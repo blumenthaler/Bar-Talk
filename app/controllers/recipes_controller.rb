@@ -17,7 +17,7 @@ class RecipesController < ApplicationController
         if params[:user_id]
             @user = current_user
             @recipe = @user.recipes.find_by(id: params[:id])
-            redirect_to user_recipes_path(@recipe), flash[:message] = "Post not found." if @recipe.nil?
+            redirect_to user_recipes_path(@recipe), flash[:message] = "Recipe not found." if @recipe.nil?
         else
             @post = Post.find(params[:id])
         end
