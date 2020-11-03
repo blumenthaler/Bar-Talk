@@ -12,4 +12,21 @@ class ApplicationController < ActionController::Base
     def redirect_if_not_logged_in
         redirect_to '/login' if !logged_in?
     end
+
+    def users_without_current_user
+        @users = User.all_except(current_user)
+        user_ids = []
+        @users.each do |u|
+            user_ids << u.id
+        end
+        user_ids
+    end
+
+    def recipes_without_current_user
+        recipes = []
+        users_without_current_user.each do |id|
+            recipes << Recipe.find_by(user_id: id)
+        end
+        recipes
+    end
 end
