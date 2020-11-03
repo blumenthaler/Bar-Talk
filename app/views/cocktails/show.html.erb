@@ -11,8 +11,8 @@
 <% @cocktail.recipes.each do |recipe| %>
 <li>
 <%= link_to recipe.user.username, user_path(recipe.user) %>'s Recipe:<br><br>
-Ingredients: <%= recipe.ingredients %><br>
-Garnish: <%= recipe.garnish %><br>
-Notes: <%= recipe.notes %></li><br>
+<i>Ingredients:</i> <%= recipe.ingredients %><br>
+<i>Garnish:</i> <%= recipe.garnish %><br>
+<i>Notes:</i> <%= recipe.notes %></li><br>
 <% end %>
 </ol>

@@ -1,11 +1,20 @@
 <%= content_tag :h1, @user.username %>
-<%= content_tag :h3, "Your Recipes:" %>
+<% if @user == current_user %>
+    <%= content_tag :h3, "Your Recipes:" %>
+<% else %>
+    <%= content_tag :h3, "Recipes:" %>
+<% end %>
+
 <ol>
 <% @recipes.each do |recipe| %>
     <li><%= link_to recipe.cocktail.name, cocktail_path(recipe.cocktail) %></li>
 <% end %>
 </ol>
 <br>
-<%= link_to "Add a New Recipe", new_user_recipe_path(current_user.id) %>
+
+<% if @user == current_user %>
+    <%= link_to "Add a New Recipe", new_user_recipe_path(current_user.id) %>
+<% end %>
+
 <br>
 <%= link_to "See All Cocktails", cocktails_path %>
