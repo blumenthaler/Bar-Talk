@@ -1,5 +1,9 @@
 Bar Talk: A forum for bartenders to discuss cocktail recipes and their variations
 
+Nested Route:
+- nested new route: new recipe through user
+- nested show or index route: unsure
+
 Models:
 User
 - username (string)
