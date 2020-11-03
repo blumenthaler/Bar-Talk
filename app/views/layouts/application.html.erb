@@ -13,7 +13,7 @@
   <% if logged_in? %>
     <div class="nav">
       <%= link_to "Profile", user_path(current_user) %>
-      <%= link_to "New Recipe", new_recipe_path %>
+      <%= link_to "New Recipe", new_user_recipe_path %>
       <%= link_to "All Cocktails", cocktails_path %>
       <%= link_to "All Users", users_path %>
       <%= link_to "Logout", logout_path, method:"delete" %>
