@@ -1,0 +1,8 @@
+<h1><i> The <%= @cocktail.name %></i></h1>
+
+<% if current_user.cocktails.where(id: params[:id]) %>
+# Your Recipe:
+# list your recipe for this cocktail
+# links to edit/delete your recipe
+<% end %>
+# list all recipes for this cocktail
