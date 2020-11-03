@@ -22,11 +22,11 @@ class ApplicationController < ActionController::Base
         user_ids
     end
 
-    def recipes_without_current_user
-        recipes = []
-        users_without_current_user.each do |id|
-            recipes << Recipe.find_by(user_id: id)
-        end
-        recipes
-    end
+    # def recipes_without_current_user
+    #     recipes = []
+    #     users_without_current_user.each do |id|
+    #         recipes << Recipe.find_by(user_id: id)
+    #     end
+    #     recipes
+    # end
 end
