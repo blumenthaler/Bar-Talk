@@ -4,9 +4,15 @@ Rails.application.routes.draw do
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
-  resources :sessions
+
+  resources :users, only: [:show, :index] do
+    resources :recipes, only: [:show, :index, :new, :edit]
+  end
   resources :recipes
-  resources :cocktails
   resources :users
+  resources :sessions
+  resources :cocktails
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
+
