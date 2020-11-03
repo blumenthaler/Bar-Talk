@@ -10,6 +10,10 @@
   </head>
 
   <body>
+  <% if flash[:message] %>
+    <h4 style="color:red;"><%= flash[:message] %></h4>
+  <% end %>
+  
   <% if logged_in? %>
     <div class="nav">
       <%= link_to "Profile", user_path(current_user) %>
