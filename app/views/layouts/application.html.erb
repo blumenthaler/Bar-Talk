@@ -10,6 +10,13 @@
   </head>
 
   <body>
+  <% if logged_in? %>
+    <div class="nav">
+      <%= link_to "Profile", user_path(current_user) %>
+      <%= link_to "All Cocktails", cocktails_path %>
+      <%= link_to "Logout", logout_path %>
+    </div>
+  <% end %>
     <%= yield %>
   </body>
 </html>
