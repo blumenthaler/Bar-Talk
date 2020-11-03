@@ -5,4 +5,14 @@
 # list your recipe for this cocktail
 # links to edit/delete your recipe
 <% end %>
-# list all recipes for this cocktail
+
+<br>
+<ol>
+<% @cocktail.recipes.each do |recipe| %>
+<li>
+<%= link_to recipe.user.username, user_path(recipe.user) %>'s Recipe:<br><br>
+Ingredients: <%= recipe.ingredients %><br>
+Garnish: <%= recipe.garnish %><br>
+Notes: <%= recipe.notes %></li><br>
+<% end %>
+</ol>
