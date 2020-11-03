@@ -1,0 +1,7 @@
+<%= content_tag :h1, @user.username %>
+<%= content_tag :h3, "Your Recipes:" %>
+<ol>
+<% @recipes.each do |recipe| %>
+    <li><%= link_to recipe.cocktail.name, cocktail_path(recipe.cocktail) %></li>
+<% end %>
+</ol>
