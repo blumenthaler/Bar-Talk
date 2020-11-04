@@ -2,10 +2,6 @@ Bar Talk: A forum for bartenders to discuss cocktail recipes and their variation
 
 //
 
-For one cocktail, return all recipes that are not written by the current user
-
-//
-
 Models:
 User
 - username (string)
