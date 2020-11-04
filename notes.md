@@ -1,13 +1,10 @@
 Bar Talk: A forum for bartenders to discuss cocktail recipes and their variations
 
-For one cocktail, return all recipes that are not by the current user
+//
 
+For one cocktail, return all recipes that are not written by the current user
 
-
-
-Nested Route:
-- nested new route: new recipe through user
-- nested show or index route: unsure
+//
 
 Models:
 User
@@ -18,6 +15,7 @@ User
 
 <!-- - has many comments
 - has many recipes through comments -->
+
 
 Cocktail
 - name (string)
@@ -36,7 +34,14 @@ Recipe (join table, joining cocktails and users)
 - has many users through comments -->
 
 
-Comment? (join table? joining users and recipes)
+<!-- Comment? (join table? joining users and recipes)
  - content (text)
  - belongs to user
- - belongs to recipe
+ - belongs to recipe -->
+
+
+//
+
+ Nested Route:
+- nested new route: new recipe through user
+- nested show or index route: unsure
