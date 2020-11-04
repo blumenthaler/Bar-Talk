@@ -6,7 +6,11 @@
 <i>Ingredients:</i> <%= @user_recipes[0].ingredients %><br>
 <i>Garnish:</i> <%= @user_recipes[0].garnish %><br>
 <i>Notes:</i> <%= @user_recipes[0].notes %></li><br>
+<br>
+<%= button_to "Edit", action: "/recipes/#{@user_recipes[0].id}/edit" %> | <%= button_to "Delete", { action: "/recipes/destroy", id: @user_recipes[0].id }, method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
+
+
 
 <br>
 <h4>Other Users' Recipes: </h4>

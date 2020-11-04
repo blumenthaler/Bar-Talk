@@ -28,6 +28,9 @@ class RecipesController < ApplicationController
         end
     end
 
+    def destroy
+    end
+
     private
 
     def recipe_params
