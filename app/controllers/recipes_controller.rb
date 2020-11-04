@@ -28,7 +28,22 @@ class RecipesController < ApplicationController
         end
     end
 
+    def update
+        binding.pry
+        @recipe = Recipe.find_by(id: params[:id])
+        @recipe.name = recipe_params[:name]
+        @recipe.ingredients = recipe_params[:ingredients]
+        @recipe.garnish = recipe_params[:garnish]
+        @recipe.notes = recipe_params[:notes]
+        @recipe.spirit = Spirit.find_or_create_by(name: recipe_params[:spirit])
+        @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
+        @recipe.user = current_user
+        @recipe.save
+        redirect_to cocktail_path(@recipe.cocktail)
+    end
+
     def destroy
+        binding.pry
         @recipe = Recipe.find_by(user_id: params[:user_id])
         @recipe.destroy
         redirect_to users_path
