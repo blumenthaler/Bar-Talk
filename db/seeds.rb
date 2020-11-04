@@ -15,8 +15,8 @@ vodka = Spirit.create(name: "Vodka")
 whiskey = Spirit.create(name: "Whiskey")
 
 # Cocktails 
-martini = Cocktail.create(name: "Dirty Martini", spirit: vodka)
-old_fashioned = Cocktail.create(name: "Old Fashioned", spirit: whiskey)
+martini = Cocktail.create(name: "Dirty Martini", spirit_id: vodka.id)
+old_fashioned = Cocktail.create(name: "Old Fashioned", spirit_id: whiskey.id)
 
 # Recipes 
 my_martini_recipe = Recipe.create(name: "Dirty Martini", ingredients: "a bunch of stuff", garnish: "olives", notes: "I love this cocktail", user_id: user.id, cocktail_id: martini.id)

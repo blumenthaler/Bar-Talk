@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_04_182159) do
+ActiveRecord::Schema.define(version: 2020_11_03_195227) do
 
   create_table "cocktails", force: :cascade do |t|
     t.string "name"
+    t.integer "spirit_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "spirit"
-    t.integer "spirit_id"
     t.index ["spirit_id"], name: "index_cocktails_on_spirit_id"
   end
 
@@ -36,8 +35,6 @@ ActiveRecord::Schema.define(version: 2020_11_04_182159) do
 
   create_table "spirits", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
