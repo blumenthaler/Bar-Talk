@@ -4,23 +4,27 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
     <br>
+
     <%= f.label(:spirit, "Enter or Choose a Spirit") %>
     <%= f.text_field(:spirit, list: "spirits_autocomplete") %>
-
     <datalist id="spirits_autocomplete">
         <% Spirit.all.each do |s| %>
             <option value="<%= s.name %>">
         <% end %>
     </datalist>
     <br>
+
     <%= f.label :ingredients %>
     <%= f.text_area :ingredients %>
     <br>
+
     <%= f.label :garnish %>
     <%= f.text_field :garnish %>
     <br>
+
     <%= f.label :notes %>
     <%= f.text_area :notes %>
     <br>
+    
     <%= f.submit "Create Recipe" %>
 <% end %>
