@@ -1,14 +1,16 @@
 <h1><i>The <%= @cocktail.name %></i></h1>
 
-<% if current_user.cocktails.where(id: params[:id]) %>
-# Your Recipe:
-# list your recipe for this cocktail
-# links to edit/delete your recipe
+<% if @user_recipes.exists? %>
+<h4>Your Recipe: </h4>
+<%= link_to current_user.username, user_path(current_user) %>'s Recipe:<br><br>
+<i>Ingredients:</i> <%= @user_recipes[0].ingredients %><br>
+<i>Garnish:</i> <%= @user_recipes[0].garnish %><br>
+<i>Notes:</i> <%= @user_recipes[0].notes %></li><br>
 <% end %>
 
 <br>
 <ol>
-<% @cocktail.recipes.each do |recipe| %>
+<% @other_recipes.each do |recipe| %>
 <li>
 <%= link_to recipe.user.username, user_path(recipe.user) %>'s Recipe:<br><br>
 <i>Ingredients:</i> <%= recipe.ingredients %><br>
