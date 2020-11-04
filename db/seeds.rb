@@ -11,8 +11,8 @@ user = User.create(username: "bartenderboss", password: "booze")
 jimmy = User.create(username: "JimmyP", password: "pw")
 
 # Cocktails 
-martini = Cocktail.create(name: "Dirty Martini")
-old_fashioned = Cocktail.create(name: "Old Fashioned")
+martini = Cocktail.create(name: "Dirty Martini", spirit: "Vodka")
+old_fashioned = Cocktail.create(name: "Old Fashioned", spirit: "Whiskey")
 
 # Recipes 
 my_martini_recipe = Recipe.create(name: "Dirty Martini", ingredients: "a bunch of stuff", garnish: "olives", notes: "I love this cocktail", user_id: user.id, cocktail_id: martini.id)
