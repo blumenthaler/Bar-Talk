@@ -4,17 +4,15 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
     <br>
-
     <%= f.label :spirit %>
-    <%= f.text_field :spirit, list: "spirits_autocomplete" %>
+    <%= f.text_field(:spirit, list: "spirits_autocomplete") %>
+
     <datalist id="spirits_autocomplete">
         <% Spirit.all.each do |s| %>
             <option value="<%= s.name %>">
         <% end %>
     </datalist>
     <br>
-
-   
     <%= f.label :ingredients %>
     <%= f.text_area :ingredients %>
     <br>
