@@ -10,7 +10,7 @@ class CocktailsController < ApplicationController
             redirect_to cocktails_path
         else
             @cocktail = Cocktail.find_by(id: params[:id])
-            @recipes = @cocktail.recipes_without_current_user
+            # @recipes = @cocktail.recipes_without_current_user
         end
     end
 end
