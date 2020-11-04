@@ -31,9 +31,3 @@
 
 en:
   hello: "Hello world"
-
-helpers:
-  label:
-    recipe:
-      spirit: "Enter or Choose a Spirit"
-
