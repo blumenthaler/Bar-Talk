@@ -8,7 +8,7 @@
 <i>Notes:</i> <%= @user_recipes[0].notes %></li><br>
 <br>
 
-<%= link_to "Edit", edit_recipe_path(@user_recipes[0].id) %> | <%= link_to "Delete", recipe_cocktail_path(@user_recipes[0], @cocktail) %>
+<%= link_to "Edit", edit_recipe_path(@user_recipes[0].id) %> | <%= link_to "Delete", recipe_path(@user_recipes[0].id) %>
 <% end %>
 
 
