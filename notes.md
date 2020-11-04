@@ -22,10 +22,7 @@ Cocktail
 Spirit
 - name
 - has many cocktails
-<!-- I want to show all cocktails organized by Spirit
-    so, do I need a Spirit model?
-    or can I do this in Cocktails#index?
-    Or both? (access Spirit.all in Cocktails#index) -->
+- has many recipes, through cocktails
 
 Recipe (join table, joining cocktails and users) 
 - name (string)

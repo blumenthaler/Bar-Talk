@@ -26,10 +26,12 @@ ActiveRecord::Schema.define(version: 2020_11_03_195227) do
     t.text "notes"
     t.integer "user_id", null: false
     t.integer "cocktail_id", null: false
+    t.integer "spirit_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.index ["cocktail_id"], name: "index_recipes_on_cocktail_id"
+    t.index ["spirit_id"], name: "index_recipes_on_spirit_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
@@ -46,5 +48,6 @@ ActiveRecord::Schema.define(version: 2020_11_03_195227) do
 
   add_foreign_key "cocktails", "spirits"
   add_foreign_key "recipes", "cocktails"
+  add_foreign_key "recipes", "spirits"
   add_foreign_key "recipes", "users"
 end

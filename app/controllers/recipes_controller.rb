@@ -6,9 +6,14 @@ class RecipesController < ApplicationController
     end
 
     def create
-        @recipe = Recipe.new(recipe_params)
+        @recipe = Recipe.new
+        @recipe.name = recipe_params[:name]
+        @recipe.ingredients = recipe_params[:ingredients]
+        @recipe.garnish = recipe_params[:garnish]
+        @recipe.notes = recipe_params[:notes]
+        @recipe.spirit = Spirit.find_or_create_by(name: recipe_params[:spirit])
+        @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
         @recipe.user = current_user
-        @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name) # this can probably be refactored
         @recipe.save
         redirect_to cocktail_path(@recipe.cocktail)
     end
@@ -26,6 +31,6 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:name, :ingredients, :garnish, :notes, :user_id)
+        params.require(:recipe).permit(:name, :ingredients, :garnish, :notes, :user_id, :spirit)
     end
 end

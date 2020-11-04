@@ -19,8 +19,8 @@ martini = Cocktail.create(name: "Dirty Martini", spirit_id: vodka.id)
 old_fashioned = Cocktail.create(name: "Old Fashioned", spirit_id: whiskey.id)
 
 # Recipes 
-my_martini_recipe = Recipe.create(name: "Dirty Martini", ingredients: "a bunch of stuff", garnish: "olives", notes: "I love this cocktail", user_id: user.id, cocktail_id: martini.id)
-jimmy_martini_recipe = Recipe.create(name: "Dirty Martini", ingredients: "gin, olive juice, vermouth", garnish: "a ton of olives", notes: "You can also use vodka", user_id: jimmy.id, cocktail_id: martini.id)
+my_martini_recipe = Recipe.create(name: "Dirty Martini", ingredients: "a bunch of stuff", garnish: "olives", notes: "I love this cocktail", user_id: user.id, cocktail_id: martini.id, spirit_id: vodka.id)
+jimmy_martini_recipe = Recipe.create(name: "Dirty Martini", ingredients: "gin, olive juice, vermouth", garnish: "a ton of olives", notes: "You can also use vodka", user_id: jimmy.id, cocktail_id: martini.id, spirit_id: vodka.id)
 
-my_old_fashioned = Recipe.create(name: "Old Fashioned", ingredients: "some whiskey, simple, bitters", garnish: "one cherry", notes: "My favorite drink", user_id: user.id, cocktail_id: old_fashioned.id)
-jimmy_old_fashioned = Recipe.create(name: "Old Fashioned",ingredients: "rye, simple, orange bitters", garnish: "couple cherries, orange slice", notes: "One big rock or whiskey stone, stirred in rocks glass", user_id: jimmy.id, cocktail_id: old_fashioned.id)
+my_old_fashioned = Recipe.create(name: "Old Fashioned", ingredients: "some whiskey, simple, bitters", garnish: "one cherry", notes: "My favorite drink", user_id: user.id, cocktail_id: old_fashioned.id, spirit_id: whiskey.id)
+jimmy_old_fashioned = Recipe.create(name: "Old Fashioned",ingredients: "rye, simple, orange bitters", garnish: "couple cherries, orange slice", notes: "One big rock or whiskey stone, stirred in rocks glass", user_id: jimmy.id, cocktail_id: old_fashioned.id, spirit_id: whiskey.id)
