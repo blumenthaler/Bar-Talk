@@ -4,8 +4,7 @@ Bar Talk: A forum for bartenders to discuss cocktail recipes and their variation
 
 - Do my models make sense? Yes
 - Do I need to refactor my create/update actions in Recipes Controller? (I think so, it is messy) 
-
-    - could create custom setters in cocktail/spirit models (when passing args from recipe_params into setters, find_or_create_by(arg), that way you can use Recipe.create(recipe_params))
+    - create custom setters in cocktail/spirit models (when passing args from recipe_params into setters, find_or_create_by(arg), that way you can use Recipe.create(recipe_params))
 
 
 - Furthermore, if I delete a Cocktail's (or a Spirit's) final Recipe, can/should/how do I delete that Cocktail/Spirit from the db? Convention? - 
