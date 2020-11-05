@@ -1,12 +1,25 @@
 <h1><i>The <%= @cocktail.name %> (<%= @cocktail.spirit.name %>)</i></h1>
 
 <% if @user_recipes.exists? %>
-    <h4>Your Recipe: </h4>
-    <i>Ingredients:</i> <%= @user_recipes[0].ingredients %><br>
-    <i>Garnish:</i> <%= @user_recipes[0].garnish %><br>
-    <i>Notes:</i> <%= @user_recipes[0].notes %></li><br>
-    <br>
-    <%= link_to "Edit", edit_recipe_path(@user_recipes[0].id) %> | <%= link_to "Delete", user_path(current_user) %>
+    <% if @user_recipes.size > 1 %>
+        <h4>Your Recipes: </h4>
+            <% @user_recipes.each_with_index do |r, i| %>
+                <strong><i>Variation #<%= i + 1 %>:</i></strong><br>
+                <i>Ingredients:</i> <%= r.ingredients %><br>
+                <i>Garnish:</i> <%= r.garnish %><br>
+                <i>Notes:</i> <%= r.notes %></li><br>
+                <%= link_to "Edit", edit_recipe_path(r.id) %> | <%= link_to "Delete", user_path(current_user) %>
+                <br><br>
+            <% end %>
+    
+    <% else %>
+        <h4>Your Recipe: </h4>
+        <i>Ingredients:</i> <%= @user_recipes[0].ingredients %><br>
+        <i>Garnish:</i> <%= @user_recipes[0].garnish %><br>
+        <i>Notes:</i> <%= @user_recipes[0].notes %></li><br>
+        <br>
+        <%= link_to "Edit", edit_recipe_path(@user_recipes[0].id) %> | <%= link_to "Delete", user_path(current_user) %>
+    <% end %>
 <% end %>
 
 <% if @other_recipes.exists? %>
@@ -20,3 +33,5 @@
         <% end %>
     </ol>
 <% end %>
+
+<%= link_to "Add a Recipe to this Cocktail", new_cocktail_recipe_path(@cocktail) %>

@@ -1,6 +1,24 @@
 <h1>New Recipe</h1>
 
+<h2><%= @cocktail.name if @cocktail %></h2>
+
 <%= form_for @recipe do |f| %>
+    <% if @cocktail %>
+        <%= f.label :name %>
+        <%= f.text_field(:name, value: @cocktail.name) %>
+    <br>
+
+    <%= f.label(:spirit_id, "Type or Choose a Spirit:") %>
+    <%= f.text_field(:spirit, list: "spirits_autocomplete", value: @cocktail.spirit.name) %>
+    <datalist id="spirits_autocomplete">
+        <% Spirit.all.each do |s| %>
+            <option value="<%= s.name %>">
+        <% end %>
+    </datalist>
+    <br>
+
+    <% else %>
+
     <%= f.label(:name, "Type or Choose a Cocktail:") %>
     <%= f.text_field(:name, list: "names_autocomplete") %>
     <%#= f.collection_select :id, :name, Cocktail.all, :id, :name %>
@@ -12,13 +30,15 @@
     <br>
 
     <%= f.label(:spirit_id, "Type or Choose a Spirit:") %>
-    <%= f.text_field(:spirit_id, list: "spirits_autocomplete") %>
+    <%= f.text_field(:spirit, list: "spirits_autocomplete") %>
     <datalist id="spirits_autocomplete">
         <% Spirit.all.each do |s| %>
             <option value="<%= s.name %>">
         <% end %>
     </datalist>
     <br>
+
+    <% end %>
 
     <%= f.label :ingredients %>
     <%= f.text_area :ingredients %>

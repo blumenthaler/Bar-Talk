@@ -12,10 +12,15 @@ class RecipesController < ApplicationController
     end
 
     def new
+        binding.pry
         @recipe = Recipe.new(user_id: params[:user_id])
+        if params[:cocktail_id]
+            @cocktail = Cocktail.find_by_id(params[:cocktail_id])
+        end
     end
 
     def create
+        binding.pry
         @recipe = Recipe.new
         # @recipe = Recipe.new(recipe_params)
         # recipe_params needs correct fields
@@ -25,14 +30,14 @@ class RecipesController < ApplicationController
         @recipe.garnish = recipe_params[:garnish]
         @recipe.notes = recipe_params[:notes]
         # binding.pry
-        @recipe.spirit = Spirit.find_or_create_by(name: recipe_params[:spirit_id])
-        @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
+        @recipe.spirit_id = Spirit.find_or_create_by(name: recipe_params[:spirit]).id
+        @recipe.cocktail_id = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id).id
         # binding.pry
         @recipe.user = current_user
         if @recipe.save
             redirect_to cocktail_path(@recipe.cocktail)
         else
-            render new
+            render :new
             flash[:message] = "Recipe creation failed. Please try again."
         end
     end
@@ -73,6 +78,6 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:name, :ingredients, :garnish, :notes, :user_id, :spirit_id)
+        params.require(:recipe).permit(:name, :ingredients, :garnish, :notes, :user_id, :spirit)
     end
 end
