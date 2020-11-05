@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
         if @recipe.save
             redirect_to cocktail_path(@recipe.cocktail)
         else
-            render :new
+            redirect_to new_user_recipe_path(current_user)
         end
     end
 
