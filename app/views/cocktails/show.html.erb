@@ -13,7 +13,7 @@
     <h4>Other Users' Recipes: </h4>
     <ol>
         <% @other_recipes.each do |recipe| %>
-            <li><%= link_to recipe.user.username, user_path(recipe.user) %>'s Recipe:<br><br>
+            <li><%= link_to recipe.user.username, user_recipes_path(recipe.user) %>'s Recipe:<br><br>
             <i>Ingredients:</i> <%= recipe.ingredients %><br>
             <i>Garnish:</i> <%= recipe.garnish %><br>
             <i>Notes:</i> <%= recipe.notes %></li><br>
