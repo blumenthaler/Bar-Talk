@@ -2,7 +2,6 @@
 
 <% if @user_recipes.exists? %>
 <h4>Your Recipe: </h4>
-<%= link_to current_user.username, user_path(current_user) %>'s Recipe:<br><br>
 <i>Ingredients:</i> <%= @user_recipes[0].ingredients %><br>
 <i>Garnish:</i> <%= @user_recipes[0].garnish %><br>
 <i>Notes:</i> <%= @user_recipes[0].notes %></li><br>
