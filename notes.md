@@ -2,6 +2,18 @@ Bar Talk: A forum for bartenders to discuss cocktail recipes and their variation
 
 //
 
+- Do my models make sense?
+- Should I build my recipes off of the current user or the associated spirit? 
+
+        current_user.recipes.build(recipe_params) 
+        OR 
+        some_spirit.recipes.build(recipe_params)
+
+
+- Furthermore, if I delete a Cocktail's (or a Spirit's) final Recipe, can/should/how do I delete that Cocktail/Spirit from the db? Convention?
+
+//
+
 Models:
 User
 - username (string)
@@ -31,6 +43,7 @@ Recipe (join table, joining cocktails and users)
 - notes (text)
 - belongs to user
 - belongs to cocktail
+- belongs to spirit
 
 <!-- - has many comments
 - has many users through comments -->
