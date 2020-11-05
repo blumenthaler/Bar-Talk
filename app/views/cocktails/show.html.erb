@@ -1,4 +1,4 @@
-<h1><i>The <%= @cocktail.name %></i></h1>
+<h1><i>The <%= @cocktail.name %> (<%= @cocktail.spirit.name %>)</i></h1>
 
 <% if @user_recipes.exists? %>
 <h4>Your Recipe: </h4>
@@ -10,16 +10,14 @@
 <%= link_to "Edit", edit_recipe_path(@user_recipes[0].id) %> | <%= link_to "Delete", user_path(current_user) %>
 <% end %>
 
-
-
-<br>
-<h4>Other Users' Recipes: </h4>
-<ol>
-<% @other_recipes.each do |recipe| %>
-<li>
-<%= link_to recipe.user.username, user_path(recipe.user) %>'s Recipe:<br><br>
-<i>Ingredients:</i> <%= recipe.ingredients %><br>
-<i>Garnish:</i> <%= recipe.garnish %><br>
-<i>Notes:</i> <%= recipe.notes %></li><br>
+<% if @other_recipes.exists? %>
+    <h4>Other Users' Recipes: </h4>
+    <ol>
+        <% @other_recipes.each do |recipe| %>
+            <li><%= link_to recipe.user.username, user_path(recipe.user) %>'s Recipe:<br><br>
+            <i>Ingredients:</i> <%= recipe.ingredients %><br>
+            <i>Garnish:</i> <%= recipe.garnish %><br>
+            <i>Notes:</i> <%= recipe.notes %></li><br>
+        <% end %>
+    </ol>
 <% end %>
-</ol>
