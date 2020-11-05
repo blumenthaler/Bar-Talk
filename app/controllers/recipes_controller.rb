@@ -7,12 +7,16 @@ class RecipesController < ApplicationController
 
     def create
         @recipe = Recipe.new
+        # @recipe = Recipe.new(recipe_params)
+        # recipe_params needs correct fields
         @recipe.name = recipe_params[:name]
         @recipe.ingredients = recipe_params[:ingredients]
         @recipe.garnish = recipe_params[:garnish]
         @recipe.notes = recipe_params[:notes]
-        @recipe.spirit = Spirit.find_or_create_by(name: recipe_params[:spirit])
+        # binding.pry
+        @recipe.spirit = Spirit.find_or_create_by(name: recipe_params[:spirit_id])
         @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
+        # binding.pry
         @recipe.user = current_user
         if @recipe.save
             redirect_to cocktail_path(@recipe.cocktail)
@@ -39,8 +43,10 @@ class RecipesController < ApplicationController
         @recipe.ingredients = recipe_params[:ingredients]
         @recipe.garnish = recipe_params[:garnish]
         @recipe.notes = recipe_params[:notes]
-        @recipe.spirit = Spirit.find_or_create_by(name: recipe_params[:spirit])
+
+        @recipe.spirit = Spirit.find_or_create_by(id: recipe_params[:spirit_id])
         @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
+
         @recipe.user = current_user
         @recipe.save
         redirect_to cocktail_path(@recipe.cocktail)
@@ -56,6 +62,6 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:name, :ingredients, :garnish, :notes, :user_id, :spirit)
+        params.require(:recipe).permit(:name, :ingredients, :garnish, :notes, :user_id, :spirit_id)
     end
 end

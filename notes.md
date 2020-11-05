@@ -2,17 +2,20 @@ Bar Talk: A forum for bartenders to discuss cocktail recipes and their variation
 
 //
 
-- Do my models make sense?
-- Should I build my recipes off of the current user or the associated spirit? 
+- Do my models make sense? Yes
+- Do I need to refactor my create/update actions in Recipes Controller? (I think so, it is messy) 
 
-        current_user.recipes.build(recipe_params) 
-        OR 
-        some_spirit.recipes.build(recipe_params)
+    - could create custom setters in cocktail/spirit models (when passing args from recipe_params into setters, find_or_create_by(arg), that way you can use Recipe.create(recipe_params))
 
 
-- Furthermore, if I delete a Cocktail's (or a Spirit's) final Recipe, can/should/how do I delete that Cocktail/Spirit from the db? Convention?
+- Furthermore, if I delete a Cocktail's (or a Spirit's) final Recipe, can/should/how do I delete that Cocktail/Spirit from the db? Convention? - 
+    - Do not have to worry about deleting Cocktails/Spirits from db
+    - Just update the views to not display headers if Spirits do not have any cocktails AND if Cocktails do not have any Recipes.
+
+- Validation: User can only have one cocktail recipe of the same name
 
 //
+
 
 Models:
 User
