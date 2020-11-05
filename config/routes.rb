@@ -5,15 +5,16 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
 
-  # users/2/recipes #=> All of your recipes (index)
+  # users/2/recipes #=> All of your recipes (index) #=> show all details of your recipes
+  # users/2/recipes/new #=> Add a recipe to this user (new/create)
   resources :users do
-    resources :recipes, only: [:index]
+    resources :recipes, only: [:new, :create, :index]
   end
 
   # cocktails/2/recipes/new #=> Add a recipe to THIS Cocktail (new) (redirect to cocktail_path(cocktail))
-  resources :cocktails do
-    resources :recipes, only: [:new, :create]
-  end
+  # resources :cocktails do
+  #   resources :recipes, only: [:new, :create]
+  # end
 
   resources :recipes
   resources :users

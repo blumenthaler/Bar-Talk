@@ -1,6 +1,17 @@
 class RecipesController < ApplicationController
     before_action :redirect_if_not_logged_in
 
+    # trying to access all recipes by a user
+    def index
+        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+            @recipes = @user.recipes
+        else
+    # if it fails, go to all users, set flash
+            flash[:message] = "Something is wrong. Try again."
+            redirect_to users_path
+        end
+    end
+
     def new
         @recipe = Recipe.new(user_id: params[:user_id])
     end
