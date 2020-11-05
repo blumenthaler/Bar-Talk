@@ -14,8 +14,12 @@ class RecipesController < ApplicationController
         @recipe.spirit = Spirit.find_or_create_by(name: recipe_params[:spirit])
         @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
         @recipe.user = current_user
-        @recipe.save
-        redirect_to cocktail_path(@recipe.cocktail)
+        if @recipe.save
+            redirect_to cocktail_path(@recipe.cocktail)
+        else
+            render new
+            flash[:message] = "Recipe creation failed. Please try again."
+        end
     end
 
     def edit 
