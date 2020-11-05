@@ -12,7 +12,6 @@ class RecipesController < ApplicationController
     end
 
     def new
-        binding.pry
         @recipe = Recipe.new(user_id: params[:user_id])
         if params[:cocktail_id]
             @cocktail = Cocktail.find_by_id(params[:cocktail_id])
@@ -29,16 +28,15 @@ class RecipesController < ApplicationController
         @recipe.ingredients = recipe_params[:ingredients]
         @recipe.garnish = recipe_params[:garnish]
         @recipe.notes = recipe_params[:notes]
-        # binding.pry
-        @recipe.spirit_id = Spirit.find_or_create_by(name: recipe_params[:spirit]).id
-        @recipe.cocktail_id = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id).id
-        # binding.pry
+        if !recipe_params[:spirit].empty?
+            @recipe.spirit_id = Spirit.find_or_create_by(name: recipe_params[:spirit]).id
+            @recipe.cocktail_id = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id).id
+        end
         @recipe.user = current_user
         if @recipe.save
             redirect_to cocktail_path(@recipe.cocktail)
         else
             render :new
-            flash[:message] = "Recipe creation failed. Please try again."
         end
     end
 
@@ -55,7 +53,7 @@ class RecipesController < ApplicationController
     end
 
     def update
-        binding.pry
+        # binding.pry
         @recipe = Recipe.find_by(id: params[:id])
         @recipe.name = recipe_params[:name]
         @recipe.ingredients = recipe_params[:ingredients]
