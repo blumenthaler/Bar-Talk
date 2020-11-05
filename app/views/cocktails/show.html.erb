@@ -1,13 +1,12 @@
 <h1><i>The <%= @cocktail.name %> (<%= @cocktail.spirit.name %>)</i></h1>
 
 <% if @user_recipes.exists? %>
-<h4>Your Recipe: </h4>
-<i>Ingredients:</i> <%= @user_recipes[0].ingredients %><br>
-<i>Garnish:</i> <%= @user_recipes[0].garnish %><br>
-<i>Notes:</i> <%= @user_recipes[0].notes %></li><br>
-<br>
-
-<%= link_to "Edit", edit_recipe_path(@user_recipes[0].id) %> | <%= link_to "Delete", user_path(current_user) %>
+    <h4>Your Recipe: </h4>
+    <i>Ingredients:</i> <%= @user_recipes[0].ingredients %><br>
+    <i>Garnish:</i> <%= @user_recipes[0].garnish %><br>
+    <i>Notes:</i> <%= @user_recipes[0].notes %></li><br>
+    <br>
+    <%= link_to "Edit", edit_recipe_path(@user_recipes[0].id) %> | <%= link_to "Delete", user_path(current_user) %>
 <% end %>
 
 <% if @other_recipes.exists? %>

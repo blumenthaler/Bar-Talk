@@ -1,11 +1,16 @@
 <h1>New Recipe</h1>
 
 <%= form_for @recipe do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label(:name, "Type or Choose a Cocktail:") %>
+    <%= f.text_field(:name, list: "names_autocomplete") %>
+    <datalist id="names_autocomplete">
+        <% Cocktail.all.each do |c| %>
+            <option value="<%= c.name %>">
+        <% end %>
+    </datalist>
     <br>
 
-    <%= f.label(:spirit, "Enter or Choose a Spirit") %>
+    <%= f.label(:spirit, "Type or Choose a Spirit:") %>
     <%= f.text_field(:spirit, list: "spirits_autocomplete") %>
     <datalist id="spirits_autocomplete">
         <% Spirit.all.each do |s| %>
