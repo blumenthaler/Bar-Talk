@@ -1,7 +1,6 @@
 class RecipesController < ApplicationController
     before_action :redirect_if_not_logged_in
 
-    # trying to access all recipes by a user
     def index
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
             @recipes = @user.recipes
@@ -20,6 +19,7 @@ class RecipesController < ApplicationController
         @recipe = Recipe.new
         # @recipe = Recipe.new(recipe_params)
         # recipe_params needs correct fields
+        # can create custom setters so that mass assignment can work
         @recipe.name = recipe_params[:name]
         @recipe.ingredients = recipe_params[:ingredients]
         @recipe.garnish = recipe_params[:garnish]
