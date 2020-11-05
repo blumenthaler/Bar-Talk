@@ -5,8 +5,8 @@
     <%= f.text_field :name %>
     <br>
 
-    <%= f.label(:spirit, "Enter or Choose a Spirit") %>
-    <%= f.text_field(:spirit, list: "spirits_autocomplete") %>
+    <%= f.label(:spirit, "Type or Choose a Spirit") %>
+    <%= f.text_field(:spirit, list: "spirits_autocomplete", value: @cocktail.spirit.name) %>
     <datalist id="spirits_autocomplete">
         <% Spirit.all.each do |s| %>
             <option value="<%= s.name %>">
@@ -26,5 +26,5 @@
     <%= f.text_area :notes %>
     <br>
     
-    <%= f.submit "Create Recipe" %>
+    <%= f.submit "Update Recipe" %>
 <% end %>

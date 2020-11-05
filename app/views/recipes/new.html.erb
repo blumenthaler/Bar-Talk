@@ -8,7 +8,7 @@
         <%= f.text_field(:name, value: @cocktail.name) %>
     <br>
 
-    <%= f.label(:spirit_id, "Type or Choose a Spirit:") %>
+    <%= f.label(:spirit, "Type or Choose a Spirit:") %>
     <%= f.text_field(:spirit, list: "spirits_autocomplete", value: @cocktail.spirit.name) %>
     <datalist id="spirits_autocomplete">
         <% Spirit.all.each do |s| %>

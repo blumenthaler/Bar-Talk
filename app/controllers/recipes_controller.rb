@@ -46,9 +46,11 @@ class RecipesController < ApplicationController
         if params[:user_id]
             @user = current_user
             @recipe = @user.recipes.find_by(id: params[:id])
+            @cocktail = @recipe.cocktail
             redirect_to user_recipes_path(@recipe), flash[:message] = "Recipe not found." if @recipe.nil?
         else
             @recipe = Recipe.find(params[:id])
+            @cocktail = @recipe.cocktail
         end
     end
 
@@ -60,7 +62,7 @@ class RecipesController < ApplicationController
         @recipe.garnish = recipe_params[:garnish]
         @recipe.notes = recipe_params[:notes]
 
-        @recipe.spirit = Spirit.find_or_create_by(id: recipe_params[:spirit_id])
+        @recipe.spirit_id = Spirit.find_or_create_by(name: recipe_params[:spirit]).id
         @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
 
         @recipe.user = current_user
