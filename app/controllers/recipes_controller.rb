@@ -19,7 +19,8 @@ class RecipesController < ApplicationController
     end
 
     def create
-        @recipe = Recipe.new(recipe_params_without_cocktail_spirit)
+        binding.pry
+        @recipe = Recipe.new(recipe_params_without_spirit)
         
         if !recipe_params[:spirit].empty?
             @recipe.spirit_id = Spirit.find_or_create_by(name: recipe_params[:spirit]).id
@@ -31,10 +32,12 @@ class RecipesController < ApplicationController
         if @recipe.save
             redirect_to cocktail_path(@recipe.cocktail)
         else
-            errors = []
+            # is this okay for new form validations?
+            errors = ["Recipe was not saved"]
             @recipe.errors.full_messages.each do |msg|
                 errors << msg
             end
+            errors << "Please try again."
             flash[:message] = errors.join(". ")
             redirect_to new_user_recipe_path(current_user)
         end
@@ -55,24 +58,31 @@ class RecipesController < ApplicationController
     def update
         # binding.pry
         @recipe = Recipe.find_by(id: params[:id])
-        @recipe.name = recipe_params[:name]
-        @recipe.ingredients = recipe_params[:ingredients]
-        @recipe.garnish = recipe_params[:garnish]
-        @recipe.notes = recipe_params[:notes]
+        @recipe.update(recipe_params_without_spirit)
+        binding.pry
+        if !recipe_params[:spirit].empty? && !recipe_params[:name].empty?
+            @recipe.spirit_id = Spirit.find_or_create_by(name: recipe_params[:spirit]).id
+            @recipe.cocktail_id = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id).id
+        end
 
-        @recipe.spirit_id = Spirit.find_or_create_by(name: recipe_params[:spirit]).id
-        @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
-
-        @recipe.user = current_user
-        @recipe.save
-        redirect_to cocktail_path(@recipe.cocktail)
+        if @recipe.save
+            redirect_to cocktail_path(@recipe.cocktail)
+        else
+            errors = ["Recipe was not updated"]
+            @recipe.errors.full_messages.each do |msg|
+                errors << msg
+            end
+            errors << "Please try again."
+            flash[:message] = errors.join(". ")
+            redirect_to edit_user_recipe_path(current_user)
+        end
     end
 
     def destroy
         binding.pry
         @recipe = Recipe.find_by(user_id: params[:user_id])
         @recipe.destroy
-        redirect_to users_path
+        redirect_to user_recipes_path(current_user)
     end
 
     def upvote
@@ -85,10 +95,10 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:name, :ingredients, :garnish, :notes, :user_id, :spirit)
+        params.require(:recipe).permit(:name, :ingredients, :garnish, :notes, :user_id, :spirit_name)
     end
 
-    def recipe_params_without_cocktail_spirit
+    def recipe_params_without_spirit
         params.require(:recipe).permit(:name, :ingredients, :garnish, :notes)
     end
 end
