@@ -19,23 +19,23 @@ class RecipesController < ApplicationController
     end
 
     def create
-        binding.pry
-        @recipe = Recipe.new
-        # @recipe = Recipe.new(recipe_params)
-        # recipe_params needs correct fields
-        # can create custom setters so that mass assignment can work
-        @recipe.name = recipe_params[:name]
-        @recipe.ingredients = recipe_params[:ingredients]
-        @recipe.garnish = recipe_params[:garnish]
-        @recipe.notes = recipe_params[:notes]
+        @recipe = Recipe.new(recipe_params_without_cocktail_spirit)
+        
         if !recipe_params[:spirit].empty?
             @recipe.spirit_id = Spirit.find_or_create_by(name: recipe_params[:spirit]).id
             @recipe.cocktail_id = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id).id
         end
+
         @recipe.user = current_user
+        
         if @recipe.save
             redirect_to cocktail_path(@recipe.cocktail)
         else
+            errors = []
+            @recipe.errors.full_messages.each do |msg|
+                errors << msg
+            end
+            flash[:message] = errors.join(". ")
             redirect_to new_user_recipe_path(current_user)
         end
     end
@@ -79,5 +79,9 @@ class RecipesController < ApplicationController
 
     def recipe_params
         params.require(:recipe).permit(:name, :ingredients, :garnish, :notes, :user_id, :spirit)
+    end
+
+    def recipe_params_without_cocktail_spirit
+        params.require(:recipe).permit(:name, :ingredients, :garnish, :notes)
     end
 end
