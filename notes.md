@@ -3,12 +3,16 @@ Bar Talk: A forum for bartenders to discuss cocktail recipes and their variation
 //
 
 To Do:
-- finish voting, use for scope methods
+- finish voting, use for scope methods (optional)
     - "highest_rated" recipe scope method; show page
 - verify that my validations for new form are valid(?)
     - using flash instead of logic in view
-    - redirects instead of render :new
+    - I do not want to render :new; path becomes recipes/new, so my nested new route (cocktails#new) is gone
+    - Therefore I redirect instead of render :new, so I must use flash for validations
     - is that^ okay?
+- add comments functionality (optional)
+- add a layout (kind of optional)
+
 
 //
 
