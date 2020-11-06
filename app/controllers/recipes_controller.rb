@@ -5,7 +5,6 @@ class RecipesController < ApplicationController
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
             @recipes = @user.recipes
         else
-    # if it fails, go to all users, set flash
             flash[:message] = "Something is wrong. Try again."
             redirect_to users_path
         end
@@ -19,16 +18,13 @@ class RecipesController < ApplicationController
     end
 
     def create
-        binding.pry
-        @recipe = Recipe.new(recipe_params_without_spirit)
-        
-        if !recipe_params[:spirit].empty?
-            @recipe.spirit_id = Spirit.find_or_create_by(name: recipe_params[:spirit]).id
-            @recipe.cocktail_id = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id).id
-        end
+        @recipe = Recipe.new(recipe_params)
+        # cannot mass assign cocktail
+        # cocktail name is the same as recipe name
+        # therefore there is only field for name (as in recipe[:name]), not cocktail
+        @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
 
         @recipe.user = current_user
-        
         if @recipe.save
             redirect_to cocktail_path(@recipe.cocktail)
         else
@@ -56,26 +52,16 @@ class RecipesController < ApplicationController
     end
 
     def update
-        # binding.pry
         @recipe = Recipe.find_by(id: params[:id])
-        @recipe.update(recipe_params_without_spirit)
-        binding.pry
-        if !recipe_params[:spirit].empty? && !recipe_params[:name].empty?
-            @recipe.spirit_id = Spirit.find_or_create_by(name: recipe_params[:spirit]).id
-            @recipe.cocktail_id = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id).id
+        if req_recipe_params.values.any?{|i|i.empty?}
+            flash[:message] = "Recipe was not updated. Name, spirit, and ingredients cannot be empty. Please try again."
+            redirect_to edit_recipe_path(@recipe)
+        else
+            flash[:success] = "Recipe updated!"
+            @recipe.update(recipe_params)
+            redirect_to cocktail_path(@recipe.cocktail)
         end
 
-        if @recipe.save
-            redirect_to cocktail_path(@recipe.cocktail)
-        else
-            errors = ["Recipe was not updated"]
-            @recipe.errors.full_messages.each do |msg|
-                errors << msg
-            end
-            errors << "Please try again."
-            flash[:message] = errors.join(". ")
-            redirect_to edit_user_recipe_path(current_user)
-        end
     end
 
     def destroy
@@ -98,7 +84,8 @@ class RecipesController < ApplicationController
         params.require(:recipe).permit(:name, :ingredients, :garnish, :notes, :user_id, :spirit_name)
     end
 
-    def recipe_params_without_spirit
-        params.require(:recipe).permit(:name, :ingredients, :garnish, :notes)
+    def req_recipe_params
+        params.require(:recipe).permit(:name, :ingredients, :spirit_name)
     end
+
 end
