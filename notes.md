@@ -2,6 +2,27 @@ Bar Talk: A forum for bartenders to discuss cocktail recipes and their variation
 
 //
 
+To Do:
+- finish voting (optional)
+- refactor recipes#edit/update, cleaner code
+- scope method: users.where.not(current_user); implement in cocktails#show
+- Google OmniAuth
+- verify that my validations for new form are valid(?)
+    - using flash instead of logic in view
+    - redirects instead of render :new
+    - is that^ okay?
+
+//
+
+Voting:
+- added basic upvote functionality
+- need to change it so:
+    - users can vote either up OR down
+    - users can only have one vote per recipe
+    - users can change their vote on any recipe (from up to down, etc.)
+
+//
+
 - Do my models make sense? Yes
 - Do I need to refactor my create/update actions in Recipes Controller? (I think so, it is messy) 
     - create custom setters in cocktail/spirit models (when passing args from recipe_params into setters, find_or_create_by(arg), that way you can use Recipe.create(recipe_params))

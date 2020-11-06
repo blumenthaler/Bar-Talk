@@ -75,6 +75,13 @@ class RecipesController < ApplicationController
         redirect_to users_path
     end
 
+    def upvote
+        # binding.pry
+        @recipe = Recipe.find(params[:id])
+        @recipe.votes.create
+        redirect_to cocktail_path(@recipe.cocktail)
+    end
+
     private
 
     def recipe_params
