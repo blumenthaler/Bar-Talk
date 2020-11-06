@@ -7,7 +7,6 @@ class User < ApplicationRecord
 
 
     def self.from_omniauth(auth)
-        binding.pry
         where(username: auth.info.name).first_or_initialize do |user|
           user.username = auth.info.name
           user.password = SecureRandom.hex

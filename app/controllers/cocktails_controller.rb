@@ -11,8 +11,8 @@ class CocktailsController < ApplicationController
             redirect_to cocktails_path
         else
             @cocktail = Cocktail.find_by(id: params[:id])
-            @user_recipes = @cocktail.recipes.where(user_id: current_user.id)
-            @other_recipes = @cocktail.recipes.where.not(user_id: current_user.id)
+            @user_recipes = @cocktail.recipes.all_by_user(current_user)
+            @other_recipes = @cocktail.recipes.all_except_user(current_user)
         end
     end
 end

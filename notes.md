@@ -5,8 +5,6 @@ Bar Talk: A forum for bartenders to discuss cocktail recipes and their variation
 To Do:
 - finish voting (optional)
 - refactor recipes#edit/update, cleaner code
-- scope method: users.where.not(current_user); implement in cocktails#show
-- Google OmniAuth
 - verify that my validations for new form are valid(?)
     - using flash instead of logic in view
     - redirects instead of render :new
