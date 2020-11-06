@@ -3,7 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
 
+# Voting gem
+gem 'acts_as_votable'
 
+# OmniAuth gems
 gem 'omniauth'
 gem 'dotenv-rails' 
 gem 'omniauth-google-oauth2'

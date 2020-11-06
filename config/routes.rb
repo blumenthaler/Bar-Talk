@@ -12,10 +12,10 @@ Rails.application.routes.draw do
     resources :recipes, only: [:new, :create, :index]
   end
 
-
   resources :recipes do
     member do
-      post 'upvote'
+      put "like", to: "recipes#upvote"
+      put "dislike", to: "recipes#downvote"
     end
   end
 

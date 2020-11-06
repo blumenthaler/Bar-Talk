@@ -8,7 +8,7 @@
                 <i>Ingredients:</i> <%= r.ingredients %><br>
                 <i>Garnish:</i> <%= r.garnish %><br>
                 <i>Notes:</i> <%= r.notes %></li><br>
-                <strong>Vote: </strong><%= button_to '+1', upvote_recipe_path(r), method: :post %><br>
+               
                 <%= button_to 'Edit', edit_recipe_path(r), method: 'get'%>
                 <%= button_to 'Delete', recipe_path(r), method: 'delete', data: { confirm: 'Are you sure?' } %>
                 <br><br>
@@ -23,7 +23,6 @@
         <i>Ingredients:</i> <%= @user_recipes[0].ingredients %><br>
         <i>Garnish:</i> <%= @user_recipes[0].garnish %><br>
         <i>Notes:</i> <%= @user_recipes[0].notes %></li><br>
-        <strong>Vote: </strong><%= button_to '+1', upvote_recipe_path(@user_recipes[0]), method: :post %>
         <br>
         <%= button_to 'Edit', edit_recipe_path(@user_recipes[0]), method: 'get'%>
         <%= button_to 'Delete', recipe_path(@user_recipes[0]), method: 'delete', data: { confirm: 'Are you sure?' } %>
@@ -38,7 +37,7 @@
             <i>Ingredients:</i> <%= recipe.ingredients %><br>
             <i>Garnish:</i> <%= recipe.garnish %><br>
             <i>Notes:</i> <%= recipe.notes %></li>
-            <strong>Vote: </strong><%= button_to '+1', upvote_recipe_path(recipe), method: :post %><br>
+            <strong>Vote: </strong><%= button_to '+1', like_recipe_path(recipe), method: :put %><%= button_to '-1', dislike_recipe_path(recipe), method: :put %>
         <% end %>
     </ol>
 <% end %>

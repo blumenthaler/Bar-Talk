@@ -4,7 +4,7 @@ class User < ApplicationRecord
     # has_many :recipied_cocktails, through: :recipes, source: :cocktail
     validates :username, presence: true
     has_secure_password
-
+    acts_as_voter
 
     def self.from_omniauth(auth)
         where(username: auth.info.name).first_or_initialize do |user|

@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
     before_action :redirect_if_not_logged_in
-
+    
     def index
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
             @recipes = @user.recipes
@@ -72,9 +72,16 @@ class RecipesController < ApplicationController
     end
 
     def upvote
-        # binding.pry
         @recipe = Recipe.find(params[:id])
-        @recipe.votes.create
+        @recipe.upvote_by current_user
+        flash[:success] = "You liked this recipe."
+        redirect_to cocktail_path(@recipe.cocktail)
+    end
+
+    def downvote
+        @recipe = Recipe.find(params[:id])
+        @recipe.downvote_by current_user
+        flash[:success] = "You disliked this recipe."
         redirect_to cocktail_path(@recipe.cocktail)
     end
 
