@@ -15,4 +15,5 @@ class Recipe < ApplicationRecord
   def spirit_name
     self.spirit ? self.spirit.name : nil
   end
+
 end

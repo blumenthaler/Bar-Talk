@@ -15,4 +15,14 @@ class CocktailsController < ApplicationController
             @other_recipes = @cocktail.recipes.all_except_user(current_user)
         end
     end
+
+    def popular 
+        @recipes = highest_rated_recipes
+    end
+
+    def highest_rated_recipes
+        recipes = Recipe.all.each.sort_by{|r| r.get_likes.size}
+        top_three = [recipes[0], recipes[1], recipes[2]]
+        top_three
+    end
 end

@@ -4,9 +4,8 @@ Rails.application.routes.draw do
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
-
   get '/auth/:provider/callback' => 'sessions#omniauth'
-
+  get '/popular', to: "cocktails#popular"
 
   resources :users do
     resources :recipes, only: [:new, :create, :index]
