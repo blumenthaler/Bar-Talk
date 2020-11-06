@@ -5,6 +5,9 @@
         <h4>Your Recipes: </h4>
             <% @user_recipes.each_with_index do |r, i| %>
                 <strong><i>Variation #<%= i + 1 %>:</i></strong><br>
+                <% if @popular.include?(r) %>
+                    <strong>* Popular Recipe *</strong><br>
+                <% end %>
                 <i>Ingredients:</i> <%= r.ingredients %><br>
                 <i>Garnish:</i> <%= r.garnish %><br>
                 <i>Notes:</i> <%= r.notes %></li><br>
@@ -20,12 +23,17 @@
     
     <% else %>
         <h4>Your Recipe: </h4>
+        <% if @popular.include?(@user_recipes[0]) %>
+            <strong>* Popular Recipe *</strong><br>
+        <% end %>
         <i>Ingredients:</i> <%= @user_recipes[0].ingredients %><br>
         <i>Garnish:</i> <%= @user_recipes[0].garnish %><br>
         <i>Notes:</i> <%= @user_recipes[0].notes %></li><br>
         <br>
         <%= button_to 'Edit', edit_recipe_path(@user_recipes[0]), method: 'get'%>
         <%= button_to 'Delete', recipe_path(@user_recipes[0]), method: 'delete', data: { confirm: 'Are you sure?' } %>
+        
+                
     <% end %>
 <% end %>
 
@@ -34,6 +42,9 @@
     <ol>
         <% @other_recipes.each do |recipe| %>
             <li><%= link_to recipe.user.username, user_recipes_path(recipe.user) %>'s Recipe:<br><br>
+            <% if @popular.include?(recipe) %>
+                <strong>* Popular Recipe *</strong><br>
+            <% end %>
             <i>Ingredients:</i> <%= recipe.ingredients %><br>
             <i>Garnish:</i> <%= recipe.garnish %><br>
             <i>Notes:</i> <%= recipe.notes %></li>

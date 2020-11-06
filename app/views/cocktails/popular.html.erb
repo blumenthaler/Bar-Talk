@@ -2,6 +2,6 @@
 
 <ol>
 <% @recipes.each do |r| %>
-    <li><%= link_to "#{r.name} by #{r.user.username}", cocktail_recipe_path(r) %></li>
+    <li><%= link_to "#{r.name} by #{r.user.username}", cocktail_path(r.cocktail) %></li>
 <% end %>
 </ol>
