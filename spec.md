@@ -21,6 +21,7 @@ Specs:
     # then thru a scope method, can show "highest rated recipes"
     # start with rating/voting (look up docs) -->
 - [?] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+
 - [x] Include signup
 - [x] Include login
 - [x] Include logout

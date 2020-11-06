@@ -3,14 +3,26 @@ Bar Talk: A forum for bartenders to discuss cocktail recipes and their variation
 //
 
 To Do:
-- finish voting, use for scope methods
-    - "highest_rated" recipe scope method; show page
+
+- scope method with a corresponding show page; NEEDS to query DB
+    - user with most recipes
+    - recipe with most comments?
+    - spirit with most recipes/cocktails?
+    - cocktails with most recipes?
+    - users/recipes/cocktails with most comments?
 
 - verify that my validations for new form are valid(?)
     - using flash instead of logic in view
     - I do not want to render :new; path becomes recipes/new, so my nested new route (cocktails#new) is gone
     - Therefore I redirect instead of render :new, so I must use flash for validations
     - is that^ okay?
+
+- refactor from start to end point
+    - The application is pretty DRY
+    - Limited logic in controllers
+    - Views use helper methods if appropriate
+    - Views use partials if appropriate
+
 - add comments functionality (optional)
 - add a layout (kind of optional, not really)
 
