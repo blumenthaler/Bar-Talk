@@ -12,6 +12,8 @@
   <body>
   <% if flash[:message] %>
     <h4 style="color:red;"><%= flash[:message] %></h4>
+  <% elsif flash[:success] %>
+    <h4 style="color:green;"><%= flash[:message] %></h4>
   <% end %>
   
   <% if logged_in? %>

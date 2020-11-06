@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
         if @recipe.save
             redirect_to cocktail_path(@recipe.cocktail)
         else
-            # is this okay for new form validations?
+            # is this okay for new form validations requirement?
             errors = ["Recipe was not saved"]
             @recipe.errors.full_messages.each do |msg|
                 errors << msg
@@ -65,9 +65,9 @@ class RecipesController < ApplicationController
     end
 
     def destroy
-        binding.pry
-        @recipe = Recipe.find_by(user_id: params[:user_id])
+        @recipe = Recipe.find_by(id: params[:id])
         @recipe.destroy
+        flash[:success] = "Recipe deleted."
         redirect_to user_recipes_path(current_user)
     end
 

@@ -8,10 +8,15 @@
                 <i>Ingredients:</i> <%= r.ingredients %><br>
                 <i>Garnish:</i> <%= r.garnish %><br>
                 <i>Notes:</i> <%= r.notes %></li><br>
-                <strong>Vote: </strong><%= button_to '+1', upvote_recipe_path(r), method: :post %>
-                <%= link_to "Edit", edit_recipe_path(r.id) %> | <%= link_to "Delete", user_path(current_user) %>
+                <strong>Vote: </strong><%= button_to '+1', upvote_recipe_path(r), method: :post %><br>
+                <%= button_to 'Edit', edit_recipe_path(r), method: 'get'%>
+                <%= button_to 'Delete', recipe_path(r), method: 'delete', data: { confirm: 'Are you sure?' } %>
                 <br><br>
             <% end %>
+
+
+            </td>
+      <td></td>
     
     <% else %>
         <h4>Your Recipe: </h4>
@@ -19,8 +24,9 @@
         <i>Garnish:</i> <%= @user_recipes[0].garnish %><br>
         <i>Notes:</i> <%= @user_recipes[0].notes %></li><br>
         <strong>Vote: </strong><%= button_to '+1', upvote_recipe_path(@user_recipes[0]), method: :post %>
-        <%= link_to "Edit", edit_recipe_path(@user_recipes[0].id) %> | <%= link_to "Delete", user_path(current_user) %>
         <br>
+        <%= button_to 'Edit', edit_recipe_path(@user_recipes[0]), method: 'get'%>
+        <%= button_to 'Delete', recipe_path(@user_recipes[0]), method: 'delete', data: { confirm: 'Are you sure?' } %>
     <% end %>
 <% end %>
 

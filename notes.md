@@ -5,8 +5,6 @@ Bar Talk: A forum for bartenders to discuss cocktail recipes and their variation
 To Do:
 - finish voting, use for scope methods
     - "highest_rated" recipe scope method; show page
-- refactor recipes#edit/update, cleaner code
-- get destroy working
 - verify that my validations for new form are valid(?)
     - using flash instead of logic in view
     - redirects instead of render :new
