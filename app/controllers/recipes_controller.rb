@@ -25,6 +25,7 @@ class RecipesController < ApplicationController
         # cannot mass assign cocktail
         # cocktail name is the same as recipe name
         # therefore there is only field for name (as in recipe[:name]), not cocktail
+        # is this okay?
         @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
 
         @recipe.user = current_user
@@ -55,6 +56,7 @@ class RecipesController < ApplicationController
     end
 
     def update
+        binding.pry
         @recipe = Recipe.find_by(id: params[:id])
         if req_recipe_params.values.any?{|i|i.empty?}
             flash[:message] = "Recipe was not updated. Name, spirit, and ingredients cannot be empty. Please try again."
