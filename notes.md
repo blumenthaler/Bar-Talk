@@ -22,7 +22,6 @@ To Do:
 
 //
 
-- Do my models make sense? Yes
 - Do I need to refactor my create/update actions in Recipes Controller? (I think so, it is messy) 
     - create custom setters in cocktail/spirit models (when passing args from recipe_params into setters, find_or_create_by(arg), that way you can use Recipe.create(recipe_params))
 
@@ -76,7 +75,3 @@ Recipe (join table, joining cocktails and users)
 
 
 //
-
- Nested Route:
-- nested new route: new recipe through user
-- nested show or index route: unsure

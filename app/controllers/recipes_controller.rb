@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
     before_action :redirect_if_not_logged_in
+    before_action :current_recipe, only: [:upvote, :downvote, :update, :destroy]
 
     
     def index
@@ -56,7 +57,6 @@ class RecipesController < ApplicationController
 
     def update
         binding.pry
-        @recipe = Recipe.find_by(id: params[:id])
         if req_recipe_params.values.any?{|i|i.empty?}
             flash[:message] = "Recipe was not updated. Name, spirit, and ingredients cannot be empty. Please try again."
             redirect_to edit_recipe_path(@recipe)
@@ -69,21 +69,18 @@ class RecipesController < ApplicationController
     end
 
     def destroy
-        @recipe = Recipe.find_by(id: params[:id])
         @recipe.destroy
         flash[:success] = "Recipe deleted."
         redirect_to user_recipes_path(current_user)
     end
 
     def upvote
-        @recipe = Recipe.find(params[:id])
         @recipe.upvote_by current_user
         flash[:success] = "You liked #{@recipe.user.username}'s #{@recipe.name} recipe."
         redirect_to cocktail_path(@recipe.cocktail)
     end
 
     def downvote
-        @recipe = Recipe.find(params[:id])
         @recipe.downvote_by current_user
         flash[:success] = "You disliked #{@recipe.user.username}'s #{@recipe.name} recipe."
         redirect_to cocktail_path(@recipe.cocktail)
@@ -99,4 +96,7 @@ class RecipesController < ApplicationController
         params.require(:recipe).permit(:name, :ingredients, :spirit_name)
     end
 
+    def current_recipe
+        @recipe = Recipe.find(params[:id])
+    end
 end

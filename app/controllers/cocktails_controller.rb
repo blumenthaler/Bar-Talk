@@ -2,7 +2,6 @@ class CocktailsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def index
-        # @cocktails = Cocktail.all
         @spirits = Spirit.all
     end
 
@@ -28,6 +27,7 @@ class CocktailsController < ApplicationController
         @recipes = highest_rated_recipes
     end
 
+    # does this belong in the model? or can it live here? refactor as helper method?
     def highest_rated_recipes
         recipes = Recipe.all.each.sort_by{|r| r.get_likes.size}
         top_three = [recipes[0], recipes[1], recipes[2]]

@@ -5,8 +5,11 @@ class SessionsController < ApplicationController
     end
 
     def new
-        #add helper method; if logged in, redirect to user show
-        render :login
+        if logged_in?
+            redirect_to user_path(current_user)
+        else
+            render :login
+        end
     end
 
     def create
