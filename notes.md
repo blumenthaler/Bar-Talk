@@ -4,22 +4,15 @@ Bar Talk: A forum for bartenders to discuss cocktail recipes and their variation
 
 To Do:
 
-- scope method with a corresponding show page; NEEDS to query DB
-    - *user with most recipes*
-    - recipe with most comments?
-    - spirit with most recipes/cocktails?
-    - cocktails with most recipes?
-    - users/recipes/cocktails with most comments?
-
 - add comments functionality (optional)
-
 - add a layout (kind of optional, not really)
+- Verify Recipes CRUD is working properly (update)
 
 - refactor from start to end point
     - The application is pretty DRY
     - Limited logic in controllers
     - Views use helper methods if appropriate
-    - Views use partials if appropriate
+    - *Views use partials if appropriate*
 
 - verify that my validations for new form are valid(?)
     - using flash instead of logic in view
@@ -37,8 +30,6 @@ To Do:
 - Furthermore, if I delete a Cocktail's (or a Spirit's) final Recipe, can/should/how do I delete that Cocktail/Spirit from the db? Convention? - 
     - Do not have to worry about deleting Cocktails/Spirits from db
     - Just update the views to not display headers if Spirits do not have any cocktails AND if Cocktails do not have any Recipes.
-
-- Validation: User can only have one cocktail recipe of the same name
 
 //
 
