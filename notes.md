@@ -6,7 +6,7 @@ To Do:
 
 - add comments functionality (optional)
 - add a layout (kind of optional, not really)
-- Verify Recipes CRUD is working properly (update)
+- Verify Recipes CRUD is working properly (mostly in controller, index, update)
 
 - refactor from start to end point
     - The application is pretty DRY

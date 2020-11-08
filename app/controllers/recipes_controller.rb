@@ -2,15 +2,16 @@ class RecipesController < ApplicationController
     before_action :redirect_if_not_logged_in
     before_action :current_recipe, only: [:upvote, :downvote, :update, :destroy]
 
-    
     def index
+        binding.pry
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
             @recipes = @user.recipes
-        elsif !User.find_by(id: params[:user_id])
-            flash[:message] = "This user does not exist."
-            redirect_to users_path
-        else
+        elsif params[:user_id] != nil && !User.find_by_id(params[:user_id])
+            @user = User.find_by(id: params[:user_id])
             @recipes = Recipe.all
+            flash[:message] = "This user does not exist."
+        else
+            redirect_to users_path
         end
     end
 
@@ -34,9 +35,7 @@ class RecipesController < ApplicationController
         else
             # is this okay for new form validations requirement?
             errors = ["Recipe was not saved"]
-            @recipe.errors.full_messages.each do |msg|
-                errors << msg
-            end
+            @recipe.errors.full_messages.each{ |msg| errors << msg }
             errors << "Please try again."
             flash[:message] = errors.join(". ")
             redirect_to new_user_recipe_path(current_user)
