@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete '/logout', to: "sessions#destroy"
   get '/auth/:provider/callback' => 'sessions#omniauth'
   get '/popular', to: "cocktails#popular"
+  get '/others', to: "cocktails#others"
 
   resources :users do
     resources :recipes, only: [:new, :create, :index]

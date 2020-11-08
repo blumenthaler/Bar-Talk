@@ -1,0 +1,17 @@
+<h1>Other Users' Recipes</h1>
+<% @users.each do |u| %>
+    <h4><%= link_to u.username, user_recipes_path(u) %>'s Recipes</h4>
+    <ol>
+    <% u.recipes.each do |r| %>
+        <% if @popular.include?(r) %>
+            <strong>* Popular Recipe *</strong><br>
+        <% end %>
+        <li><strong><%= link_to r.name, cocktail_path(r.cocktail) %></strong><br>
+        <i>Ingredients:</i> <%= r.ingredients %><br>
+        <i>Garnish:</i> <%= r.garnish %><br>
+        <i>Notes:</i> <%= r.notes %></li>
+        <strong>Vote: </strong><%= button_to '↑', like_recipe_path(r), method: :put %><%= button_to '↓', dislike_recipe_path(r), method: :put %></li>
+        <br>
+    <% end %>
+    </ol>
+<% end %>

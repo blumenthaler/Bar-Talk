@@ -17,10 +17,8 @@ Specs:
 - [x] The "through" part of the has_many through includes at least one user submittable attribute, that is to say, some attribute other than its foreign keys that can be submitted by the app's user (attribute_name e.g. ingredients.quantity)
 - [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
 
-    <!-- # here I want to add comments and ratings (models) to each recipe
-    # then thru a scope method, can show "highest rated recipes"
-    # start with rating/voting (look up docs) -->
-- [?] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+    <!-- # Other Users' list of recipes (cocktails#others) -->
+- [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
 
 - [x] Include signup
 - [x] Include login

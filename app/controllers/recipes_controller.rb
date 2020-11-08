@@ -27,7 +27,6 @@ class RecipesController < ApplicationController
         # therefore there is only field for name (as in recipe[:name]), not cocktail
         # is this okay?
         @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
-
         @recipe.user = current_user
         if @recipe.save
             redirect_to cocktail_path(@recipe.cocktail)
@@ -79,14 +78,14 @@ class RecipesController < ApplicationController
     def upvote
         @recipe = Recipe.find(params[:id])
         @recipe.upvote_by current_user
-        flash[:success] = "You liked this recipe."
+        flash[:success] = "You liked #{@recipe.user.username}'s #{@recipe.name} recipe."
         redirect_to cocktail_path(@recipe.cocktail)
     end
 
     def downvote
         @recipe = Recipe.find(params[:id])
         @recipe.downvote_by current_user
-        flash[:success] = "You disliked this recipe."
+        flash[:success] = "You disliked #{@recipe.user.username}'s #{@recipe.name} recipe."
         redirect_to cocktail_path(@recipe.cocktail)
     end
 

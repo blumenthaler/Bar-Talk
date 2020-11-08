@@ -1,8 +1,15 @@
 class CocktailsController < ApplicationController
+    before_action :redirect_if_not_logged_in
 
     def index
         # @cocktails = Cocktail.all
         @spirits = Spirit.all
+    end
+
+    def others
+        @recipes = Recipe.all.all_except_user(current_user)
+        @popular = highest_rated_recipes
+        @users = @recipes.map{|recipe| recipe.user}.uniq
     end
 
     def show
