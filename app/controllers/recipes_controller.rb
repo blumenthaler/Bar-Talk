@@ -5,11 +5,9 @@ class RecipesController < ApplicationController
     def index
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
             @recipes = @user.recipes
-            @popular = highest_rated_recipes
         else
             @error = "This user does not exist." if params[:user_id]
             @recipes = Recipe.all
-            @popular = highest_rated_recipes
         end
     end
 
@@ -46,11 +44,11 @@ class RecipesController < ApplicationController
     end
 
     def edit 
-        if authorized_to_edit?(@recipe)
+        if authorized_to_edit_or_delete?(@recipe)
             redirect_to user_recipes_path(@recipe), flash[:message] = "Recipe not found." if @recipe.nil?
         else
             flash[:message] = "You are not authorized to edit this recipe."
-            redirect_to user_path(current_user)
+            redirect_to cocktail_path(@recipe.cocktail)
         end
     end
 
@@ -64,9 +62,13 @@ class RecipesController < ApplicationController
     end
 
     def destroy
-        @recipe.destroy
-        flash[:success] = "Recipe deleted."
-        redirect_to user_recipes_path(current_user)
+        if authorized_to_edit_or_delete?(@recipe)
+            @recipe.destroy
+            flash[:success] = "Recipe deleted."
+            redirect_to user_recipes_path(current_user)
+        else
+            flash[:message] = "You are not authorized to delete this recipe."
+            redirect_to cocktail_path(@recipe.cocktail)
     end
 
     def upvote

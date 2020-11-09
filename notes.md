@@ -1,5 +1,7 @@
 Bar Talk: A forum for bartenders to discuss cocktail recipes and their variations
 
+• Logic present in your controllers should be encapsulated as methods in your models.
+
 //
 
 To Do:

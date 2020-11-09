@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :logged_in?, :authorized_to_edit?, :highest_rated_recipes, :pluralize_without_count
+    helper_method :current_user, :logged_in?, :authorized_to_edit_or_delete?, :highest_rated_recipes, :pluralize_without_count
 
     def current_user
         @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
         redirect_to '/login' if !logged_in?
     end
 
-    def authorized_to_edit?(recipe)
+    def authorized_to_edit_or_delete?(recipe)
         recipe.user == current_user
     end
 
