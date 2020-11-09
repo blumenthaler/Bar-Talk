@@ -1,12 +1,12 @@
 <%= render partial: "form" %>
 <h1>Edit Recipe</h1>
 
-<h2><i>The <%= @cocktail.name %> (<%= @cocktail.spirit.name %>)</i></h2>
+<h2><i>The <%= @recipe.name %> (<%= @recipe.spirit.name %>)</i></h2>
 
 <%= form_for @recipe do |f| %>
 
-    <%= f.hidden_field :name, value: @cocktail.name %>
-    <%= f.hidden_field :spirit_name, value: @cocktail.spirit.name %>
+    <%= f.hidden_field :name, value: @recipe.name %>
+    <%= f.hidden_field :spirit_name, value: @recipe.spirit.name %>
     <br>
 
     <%= f.label :ingredients %>

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :logged_in?
+    helper_method :current_user, :logged_in?, :authorized_to_edit?, :redirect_if_not_logged_in
 
     def current_user
         @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
 
     def redirect_if_not_logged_in
         redirect_to '/login' if !logged_in?
+    end
+
+    def authorized_to_edit?(recipe)
+        recipe.user == current_user
     end
 
         # does this belong in the model? or can it live here? refactor as helper method?

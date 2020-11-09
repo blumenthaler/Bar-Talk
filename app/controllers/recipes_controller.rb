@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
     before_action :redirect_if_not_logged_in
-    before_action :current_recipe, only: [:upvote, :downvote, :update, :destroy]
+    before_action :current_recipe, only: [:upvote, :downvote, :edit, :update, :destroy]
 
     def index
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
@@ -46,14 +46,11 @@ class RecipesController < ApplicationController
     end
 
     def edit 
-        if params[:user_id]
-            @user = current_user
-            @recipe = @user.recipes.find_by(id: params[:id])
-            @cocktail = @recipe.cocktail
+        if authorized_to_edit?(@recipe)
             redirect_to user_recipes_path(@recipe), flash[:message] = "Recipe not found." if @recipe.nil?
         else
-            @recipe = Recipe.find(params[:id])
-            @cocktail = @recipe.cocktail
+            flash[:message] = "You are not authorized to edit this recipe."
+            redirect_to user_path(current_user)
         end
     end
 
