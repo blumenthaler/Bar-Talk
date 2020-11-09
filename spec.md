@@ -26,19 +26,6 @@ Specs:
 - [x] Include third party signup/login (how e.g. Devise/OmniAuth)
 - [x] Include nested resource show or index (URL e.g. users/2/recipes) 
 - [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new) #cocktails/1/recipes/new
-
-    <!-- # form_for validation error messages
-    # how to do this with redirect_to new_user_recipe_path(current_user)
-    # with redirect, errors are erased
-            # when render :new; it ignores nested path,
-            # so reloading it wont work
-        # I do not need the users/:user_id/recipe/new nested route
-        # can create recipes at recipes/new and still associate w/      current_user
-            # so, remove the nested route users/recipe/new
-            # that way you can render :new with the error msgs -->
-
-
-
 - [x] Include form display of validation errors (form URL e.g. /recipes/new)
 
 Confirm:
