@@ -29,7 +29,6 @@ class RecipesController < ApplicationController
         # is this okay?
         @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
         @recipe.user = current_user
-        binding.pry
         if @recipe.save
             @cocktail = @recipe.cocktail
             flash[:success] = "Recipe Created!"
@@ -62,13 +61,12 @@ class RecipesController < ApplicationController
     end
 
     def update
-        binding.pry
-        if req_recipe_params.values.any?{|i|i.empty?}
-            flash[:message] = "Recipe was not updated. Name, spirit, and ingredients cannot be empty. Please try again."
-            redirect_to edit_recipe_path(@recipe)
+        if recipe_params[:ingredients].empty?
+            @error = "Recipe was not updated. Ingredients cannot be empty. Please try again."
+            render :edit
         else
-            flash[:success] = "Recipe updated!"
             @recipe.update(recipe_params)
+            flash[:success] = "Recipe updated!"
             redirect_to cocktail_path(@recipe.cocktail)
         end
 

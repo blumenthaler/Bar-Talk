@@ -1,17 +1,11 @@
 <h1>Edit Recipe</h1>
 
-<%= form_for @recipe do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <br>
+<h2><i>The <%= @cocktail.name %> (<%= @cocktail.spirit.name %>)</i></h2>
 
-    <%= f.label(:spirit_name, "Type or Choose a Spirit") %>
-    <%= f.text_field(:spirit_name, list: "spirits_autocomplete", value: @cocktail.spirit.name) %>
-    <datalist id="spirits_autocomplete">
-        <% Spirit.all.each do |s| %>
-            <option value="<%= s.name %>">
-        <% end %>
-    </datalist>
+<%= form_for @recipe do |f| %>
+
+    <%= f.hidden_field :name, value: @cocktail.name %>
+    <%= f.hidden_field :spirit_name, value: @cocktail.spirit.name %>
     <br>
 
     <%= f.label :ingredients %>
