@@ -1,5 +1,7 @@
-<% if @user == current_user %>
+<% if @user == current_user && !@user.recipes.empty? %>
     <h1><i>Your Recipes: </i></h1>
+<% elsif @user == current_user && @user.recipes.empty? %>
+    <h1><i><%= link_to "Add a New Recipe!", new_recipe_path %></i></h1>
 <% else %>
     <h1><i><%= @user.username %>'s Recipes: </i></h1>
 <% end %>

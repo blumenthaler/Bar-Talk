@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     end
 
     def highest_rated_recipes
-        recipes = Recipe.all.each.sort_by{|r| r.get_likes.size}
+        recipes = Recipe.all.each.sort_by{|r| r.get_likes.size}.reverse
         top_three = [recipes[0], recipes[1], recipes[2]]
         top_three
     end
