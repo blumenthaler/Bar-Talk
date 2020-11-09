@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
             @recipes = @user.recipes
         else
             @error = "This user does not exist." if params[:user_id]
-            @recipes = Recipe.all
+            @recipes = Recipe.all 
         end
     end
 

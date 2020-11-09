@@ -6,7 +6,7 @@ class CocktailsController < ApplicationController
     end
 
     def others
-        @users = Recipe.all.all_except_user(current_user).map{|recipe| recipe.user}.uniq
+        @users = users_from_recipes(Recipe.all.all_except_user(current_user))
     end
 
     def show

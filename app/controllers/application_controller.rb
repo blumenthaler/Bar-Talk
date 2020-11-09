@@ -28,4 +28,8 @@ class ApplicationController < ActionController::Base
           count == 1 ? "#{noun}#{text}" : "#{noun.pluralize}#{text}"
         end
     end
+
+    def users_from_recipes(recipes_array)
+        recipes_array.map{|recipe| recipe.user}.uniq
+    end
 end
