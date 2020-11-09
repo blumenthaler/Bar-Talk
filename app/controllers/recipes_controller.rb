@@ -65,7 +65,7 @@ class RecipesController < ApplicationController
         if authorized_to_edit_or_delete?(@recipe)
             @recipe.destroy
             flash[:success] = "Recipe deleted."
-            redirect_to user_recipes_path(current_user)
+            redirect_to user_path(current_user)
         else
             flash[:message] = "You are not authorized to delete this recipe."
             redirect_to cocktail_path(@recipe.cocktail)
