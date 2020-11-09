@@ -38,10 +38,8 @@ Specs:
             # that way you can render :new with the error msgs -->
 
 
-    <!-- # Your forms should correctly display validation errors.
-    # a. Your fields should be enclosed within a fields_with_errors class
-    # b. Error messages describing the validation failures must be present within the view. -->
-- [?] Include form display of validation errors (form URL e.g. /recipes/new)
+
+- [x] Include form display of validation errors (form URL e.g. /recipes/new)
 
 Confirm:
 - [?] The application is pretty DRY

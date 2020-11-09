@@ -36,11 +36,6 @@ class RecipesController < ApplicationController
             flash[:success] = "Recipe Created!"
             redirect_to cocktail_path(@recipe.cocktail)
         else
-            # is this okay for new form validations requirement?
-            errors = ["Recipe was not saved"]
-            @recipe.errors.full_messages.each{ |msg| errors << msg }
-            errors << "Please try again."
-            @error = errors.join(". ")
             if params[:cocktail_id] != nil
                 @cocktail = Cocktail.find_by_id(params[:cocktail_id])
             else
