@@ -61,9 +61,10 @@ class RecipesController < ApplicationController
     end
 
     def update
+        binding.pry
         if recipe_params[:ingredients].empty?
-            @error = "Recipe was not updated. Ingredients cannot be empty. Please try again."
-            render :edit
+            flash[:message] = "Recipe was not updated. Ingredients cannot be empty. Please try again."
+            redirect_to edit_recipe_path(@recipe)
         else
             @recipe.update(recipe_params)
             flash[:success] = "Recipe updated!"
