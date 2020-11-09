@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :logged_in?, :authorized_to_edit?, :highest_rated_recipes
+    helper_method :current_user, :logged_in?, :authorized_to_edit?, :highest_rated_recipes, :pluralize_without_count
 
     def current_user
         @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
@@ -17,10 +17,15 @@ class ApplicationController < ActionController::Base
         recipe.user == current_user
     end
 
-        # does this belong in the model? or can it live here? refactor as helper method?
     def highest_rated_recipes
         recipes = Recipe.all.each.sort_by{|r| r.get_likes.size}
         top_three = [recipes[0], recipes[1], recipes[2]]
         top_three
+    end
+
+    def pluralize_without_count(count, noun, text = nil)
+        if count != 0
+          count == 1 ? "#{noun}#{text}" : "#{noun.pluralize}#{text}"
+        end
     end
 end
