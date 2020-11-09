@@ -4,7 +4,6 @@ class User < ApplicationRecord
     validates :username, presence: true
     has_secure_password
     acts_as_voter
-    # scope :with_most_recipes => {User.all.sort_by{|u| u.recipes.size}.first}
 
     def self.from_omniauth(auth)
         where(username: auth.info.name).first_or_initialize do |user|
