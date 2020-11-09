@@ -6,9 +6,7 @@ class CocktailsController < ApplicationController
     end
 
     def others
-        @recipes = Recipe.all.all_except_user(current_user)
-        @popular = highest_rated_recipes
-        @users = @recipes.map{|recipe| recipe.user}.uniq
+        @users = Recipe.all.all_except_user(current_user).map{|recipe| recipe.user}.uniq
     end
 
     def show
@@ -19,7 +17,6 @@ class CocktailsController < ApplicationController
             @cocktail = Cocktail.find_by(id: params[:id])
             @user_recipes = @cocktail.recipes.all_by_user(current_user)
             @other_recipes = @cocktail.recipes.all_except_user(current_user)
-            @popular = highest_rated_recipes
         end
     end
 
