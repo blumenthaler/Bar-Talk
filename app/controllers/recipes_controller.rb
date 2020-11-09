@@ -26,7 +26,7 @@ class RecipesController < ApplicationController
     # therefore there is only field for name (as in recipe[:name]), not cocktail
     # is this okay?
     def create
-        binding.pry
+        # binding.pry
         @recipe = Recipe.new(recipe_params)
         @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
         @recipe.user = current_user
