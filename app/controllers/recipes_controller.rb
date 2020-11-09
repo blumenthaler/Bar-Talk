@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
 
     def index
         if params[:spirit_id] && @spirit = Spirit.find_by_id(params[:spirit_id])
-            @recipes = spirit.recipes
+            @recipes = @spirit.recipes
         else
             @error = "This spirit does not exist." if params[:spirit_id]
             @recipes = Recipe.all 

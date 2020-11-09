@@ -8,9 +8,13 @@
         <% if highest_rated_recipes.include?(r) %>
                 <strong>* Popular Recipe *</strong><br>
         <% end %>
-        <li><i><%= link_to r.name, cocktail_path(r.cocktail) %></i><br><br>
+        <li><i><%= link_to r.name, cocktail_path(r.cocktail) %> by: <%= link_to r.user.username, user_path(r.user) %></i><br><br>
         <i>Ingredients:</i> <%= r.ingredients %><br>
         <i>Garnish:</i> <%= r.garnish %><br>
-        <i>Notes:</i> <%= r.notes %></li><br>
+        <i>Notes:</i> <%= r.notes %></li>
+        <% if r.user != current_user %>
+            <strong>Vote: </strong><%= button_to '↑', like_recipe_path(r), method: :put %><%= button_to '↓', dislike_recipe_path(r), method: :put %>
+        <% end %>
+        <br>
     <% end %>
     </ol>
