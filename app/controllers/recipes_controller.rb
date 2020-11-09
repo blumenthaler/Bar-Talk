@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
 
     def index
         if params[:spirit_id] && @spirit = Spirit.find_by_id(params[:spirit_id])
-            @recipes = @spirit.recipes
+            @recipes = spirit.recipes
         else
             @error = "This spirit does not exist." if params[:spirit_id]
             @recipes = Recipe.all 
@@ -21,12 +21,13 @@ class RecipesController < ApplicationController
         end
     end
 
+    # cannot mass assign cocktail
+    # cocktail name is the same as recipe name
+    # therefore there is only field for name (as in recipe[:name]), not cocktail
+    # is this okay?
     def create
+        binding.pry
         @recipe = Recipe.new(recipe_params)
-        # cannot mass assign cocktail
-        # cocktail name is the same as recipe name
-        # therefore there is only field for name (as in recipe[:name]), not cocktail
-        # is this okay?
         @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
         @recipe.user = current_user
         if @recipe.save
