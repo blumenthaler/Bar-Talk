@@ -5,6 +5,10 @@ class UsersController < ApplicationController
         @users = User.all
     end
 
+    def others
+        @users = users_from_recipes(Recipe.all.all_except_user(current_user))
+    end
+
     def new
         @user = User.new
     end

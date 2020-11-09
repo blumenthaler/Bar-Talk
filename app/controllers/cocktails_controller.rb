@@ -5,10 +5,6 @@ class CocktailsController < ApplicationController
         @cocktails = Cocktail.all
     end
 
-    def others
-        @users = users_from_recipes(Recipe.all.all_except_user(current_user))
-    end
-
     def show
         if Cocktail.find_by(id: params[:id]) == nil
             flash[:message] = "This cocktail does not exist"
