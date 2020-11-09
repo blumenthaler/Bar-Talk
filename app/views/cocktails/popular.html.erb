@@ -2,6 +2,13 @@
 
 <ol>
 <% @recipes.each do |r| %>
-    <li><%= link_to "#{r.name} by #{r.user.username}", cocktail_path(r.cocktail) %></li>
+    <li><%= link_to "#{r.name} by #{r.user.username}", cocktail_path(r.cocktail) %><br>
+    <i>Ingredients:</i> <%= r.ingredients %><br>
+    <i>Garnish:</i> <%= r.garnish %><br>
+    <i>Notes:</i> <%= r.notes %></li>
+    <% if r.user != current_user %>
+        <strong>Vote: </strong><%= button_to '↑', like_recipe_path(r), method: :put %><%= button_to '↓', dislike_recipe_path(r), method: :put %>
+    <% end %>
+    <br></li>
 <% end %>
 </ol>

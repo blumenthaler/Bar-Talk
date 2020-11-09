@@ -12,7 +12,6 @@ class RecipesController < ApplicationController
     end
 
     def new
-        # binding.pry
         if params[:cocktail_id] && @cocktail = Cocktail.find_by_id(params[:cocktail_id])
             @recipe = @cocktail.recipes.build
         else
@@ -20,7 +19,6 @@ class RecipesController < ApplicationController
             @cocktail = Cocktail.new
             @recipe = Recipe.new
         end
-        binding.pry
     end
 
     def create
@@ -31,7 +29,10 @@ class RecipesController < ApplicationController
         # is this okay?
         @recipe.cocktail = Cocktail.find_or_create_by(name: @recipe.name, spirit_id: @recipe.spirit.id)
         @recipe.user = current_user
+        binding.pry
         if @recipe.save
+            @cocktail = @recipe.cocktail
+            flash[:success] = "Recipe Created!"
             redirect_to cocktail_path(@recipe.cocktail)
         else
             # is this okay for new form validations requirement?
@@ -39,7 +40,12 @@ class RecipesController < ApplicationController
             @recipe.errors.full_messages.each{ |msg| errors << msg }
             errors << "Please try again."
             @error = errors.join(". ")
-            redirect_to new_user_recipe_path(current_user)
+            if params[:cocktail_id] != nil
+                @cocktail = Cocktail.find_by_id(params[:cocktail_id])
+            else
+                @cocktail = Cocktail.new
+            end
+            render :new
         end
     end
 
