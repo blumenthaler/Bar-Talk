@@ -11,7 +11,7 @@
 
             <%= f.label(:spirit_name, "Type or Choose a Spirit:") %>
             <%= f.text_field(:spirit_name, list: "spirits_autocomplete", value: @cocktail.spirit.name) %>
-            
+
             <datalist id="spirits_autocomplete">
                 <% Spirit.all.each do |s| %>
                     <option value="<%= s.name %>">
@@ -37,38 +37,37 @@
 
     <%= form_for(@recipe) do |f| %>
 
-    <%= f.label(:name, "Type or Choose a Cocktail:") %>
-    <%= f.text_field(:name, list: "names_autocomplete") %>
-    <%#= f.collection_select :id, :name, Cocktail.all, :id, :name %>
-    <datalist id="names_autocomplete">
-        <% Cocktail.all.each do |c| %>
-            <option value="<%= c.name %>">
-        <% end %>
-    </datalist>
-    <br>
+        <%= f.label(:name, "Type or Choose a Cocktail:") %>
+        <%= f.text_field(:name, list: "names_autocomplete") %>
+        <%#= f.collection_select :id, :name, Cocktail.all, :id, :name %>
+        <datalist id="names_autocomplete">
+            <% Cocktail.all.each do |c| %>
+                <option value="<%= c.name %>">
+            <% end %>
+        </datalist>
+        <br>
 
-    <%= f.label(:spirit_name, "Type or Choose a Spirit:") %>
-    <%= f.text_field(:spirit_name, list: "spirits_autocomplete") %>
-    <datalist id="spirits_autocomplete">
-        <% Spirit.all.each do |s| %>
-            <option value="<%= s.name %>">
-        <% end %>
-    </datalist>
-    <br>
+        <%= f.label(:spirit_name, "Type or Choose a Spirit:") %>
+        <%= f.text_field(:spirit_name, list: "spirits_autocomplete") %>
+        <datalist id="spirits_autocomplete">
+            <% Spirit.all.each do |s| %>
+                <option value="<%= s.name %>">
+            <% end %>
+        </datalist>
+        <br>
 
-    <% end %>
+        <%= f.label :ingredients %>
+        <%= f.text_area :ingredients %>
+        <br>
 
-    <%= f.label :ingredients %>
-    <%= f.text_area :ingredients %>
-    <br>
+        <%= f.label :garnish %>
+        <%= f.text_field :garnish %>
+        <br>
 
-    <%= f.label :garnish %>
-    <%= f.text_field :garnish %>
-    <br>
-
-    <%= f.label :notes %>
-    <%= f.text_area :notes %>
-    <br>
+        <%= f.label :notes %>
+        <%= f.text_area :notes %>
+        <br>
     
-    <%= f.submit "Create Recipe" %>
+        <%= f.submit "Create Recipe" %>
+    <% end %>
 <% end %>

@@ -12,7 +12,7 @@ class RecipesController < ApplicationController
     end
 
     def new
-        binding.pry
+        # binding.pry
         if params[:cocktail_id] && @cocktail = Cocktail.find_by_id(params[:cocktail_id])
             @recipe = @cocktail.recipes.build
         else
@@ -20,6 +20,7 @@ class RecipesController < ApplicationController
             @cocktail = Cocktail.new
             @recipe = Recipe.new
         end
+        binding.pry
     end
 
     def create
