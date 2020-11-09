@@ -2,6 +2,9 @@
     <h1><i>Your Recipes: </i></h1>
     <ol>
     <% @recipes.each do |r| %>
+        <% if @popular.include?(r) %>
+                <strong>* Popular Recipe *</strong><br>
+        <% end %>
         <li><i><%= link_to r.name, cocktail_path(r.cocktail) %></i><br><br>
         <i>Ingredients:</i> <%= r.ingredients %><br>
         <i>Garnish:</i> <%= r.garnish %><br>
@@ -13,6 +16,9 @@
     <h1><i><%= @user.username %>'s Recipes</i></h1>
     <ol>
     <% @recipes.each do |r| %>
+        <% if @popular.include?(r) %>
+                <strong>* Popular Recipe *</strong><br>
+        <% end %>
         <li><i><%= link_to r.name, cocktail_path(r.cocktail) %></i><br><br>
         <i>Ingredients:</i> <%= r.ingredients %><br>
         <i>Garnish:</i> <%= r.garnish %><br>
@@ -23,6 +29,9 @@
     <h1><i>All Recipes</i></h1>
     <ol>
     <% @recipes.each do |r| %>
+        <% if @popular.include?(r) %>
+            <strong>* Popular Recipe *</strong><br>
+        <% end %>
         <li><i><%= link_to r.name, cocktail_path(r.cocktail) %> by: <%= link_to r.user.username, user_recipes_path(r.user) %></i><br><br>
         <i>Ingredients:</i> <%= r.ingredients %><br>
         <i>Garnish:</i> <%= r.garnish %><br>

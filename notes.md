@@ -6,6 +6,11 @@ To Do:
 
 - add comments functionality (optional)
 - add a layout (kind of optional, not really)
+
+- Your forms should correctly display validation errors
+    - Fields ARE enclosed within a fields_with_errors class
+    - Error messages describing the validation failures must be present within the view
+
 - Make sure nested routes are working (views are dynamic)
 - What is the difference between Others view and Users#recipes view?
     - implement this difference, because right now they are very similar
