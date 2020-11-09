@@ -1,7 +1,7 @@
 <h1><i>The <%= @cocktail.name %> (<%= @cocktail.spirit.name %>)</i></h1>
 
 <% if @user_recipes.exists? %>
-    <h4><i>Your <%= pluralize_without_count(@user_recipes.size, "Recipe")%>:</i></h4>
+    <h4><i>Your <%= pluralize_without_count(@user_recipes.size, "Recipe") %>:</i></h4>
     <% @user_recipes.each_with_index do |r, i| %>
         <strong><i>Variation #<%= i + 1 %>:</i></strong><br>
         <% if highest_rated_recipes.include?(r) %>
@@ -10,7 +10,7 @@
         <i>Ingredients:</i> <%= r.ingredients %><br>
         <i>Garnish:</i> <%= r.garnish %><br>
         <i>Notes:</i> <%= r.notes %></li><br>
-               
+        
         <%= button_to 'Edit', edit_recipe_path(r), method: 'get'%>
         <%= button_to 'Delete', recipe_path(r), method: 'delete', data: { confirm: 'Are you sure?' } %>            
         <br><br>
