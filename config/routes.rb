@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   get '/others', to: "users#others"
 
   resources :users do
-    resources :recipes, only: [:new, :create, :index]
+    resources :recipes, only: [:new, :create]
+  end
+
+  resources :spirits do
+    resources :recipes, only: [:index]
   end
 
   # put actions for voting

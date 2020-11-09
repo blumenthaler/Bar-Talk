@@ -32,4 +32,8 @@ class ApplicationController < ActionController::Base
     def users_from_recipes(recipes_array)
         recipes_array.map{|recipe| recipe.user}.uniq
     end
+
+    def spirit_recipes(spirit)
+        spirit.cocktails.map{|c| c.recipes}[0]
+    end
 end

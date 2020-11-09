@@ -3,10 +3,10 @@ class RecipesController < ApplicationController
     before_action :current_recipe, only: [:upvote, :downvote, :edit, :update, :destroy]
 
     def index
-        if params[:user_id] && @user = User.find_by_id(params[:user_id])
-            @recipes = @user.recipes
+        if params[:spirit_id] && @spirit = Spirit.find_by_id(params[:spirit_id])
+            @recipes = spirit_recipes(@spirit)
         else
-            @error = "This user does not exist." if params[:user_id]
+            @error = "This spirit does not exist." if params[:spirit_id]
             @recipes = Recipe.all 
         end
     end

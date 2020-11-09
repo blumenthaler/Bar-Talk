@@ -1,5 +1,8 @@
-<% if @user %>
-    <h1><i><%= @user.username %>'s Recipes</i></h1>
+<% if @spirit %>
+    <h1><i><%= @spirit.name %> Recipes</i></h1>
+<% else %>
+    <h1><i>All Recipes</i></h1>
+<% end %>
     <ol>
     <% @recipes.each do |r| %>
         <% if highest_rated_recipes.include?(r) %>
@@ -11,17 +14,3 @@
         <i>Notes:</i> <%= r.notes %></li><br>
     <% end %>
     </ol>
-<% else %>
-    <h1><i>All Recipes</i></h1>
-    <ol>
-    <% @recipes.each do |r| %>
-        <% if highest_rated_recipes.include?(r) %>
-            <strong>* Popular Recipe *</strong><br>
-        <% end %>
-        <li><i><%= link_to r.name, cocktail_path(r.cocktail) %> by: <%= link_to r.user.username, user_recipes_path(r.user) %></i><br><br>
-        <i>Ingredients:</i> <%= r.ingredients %><br>
-        <i>Garnish:</i> <%= r.garnish %><br>
-        <i>Notes:</i> <%= r.notes %></li><br>
-    <% end %>
-    </ol>
-<% end %>
