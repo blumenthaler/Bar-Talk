@@ -12,10 +12,13 @@ class RecipesController < ApplicationController
     end
 
     def new
+        binding.pry
         if params[:cocktail_id] && @cocktail = Cocktail.find_by_id(params[:cocktail_id])
             @recipe = @cocktail.recipes.build
         else
-            @error = "This user does not exist." if params[:cocktail_id]
+            @error = "This cocktail does not exist." if params[:cocktail_id]
+            @cocktail = Cocktail.new
+            @recipe = Recipe.new
         end
     end
 

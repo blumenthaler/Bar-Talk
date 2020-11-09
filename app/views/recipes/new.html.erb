@@ -2,22 +2,40 @@
 
 <h2><%= @cocktail.name if @cocktail %></h2>
 
-<%= form_for([@cocktail,@recipe]) do |f| %>
-    <% if @cocktail %>
-        <%= f.label :name %>
-        <%= f.text_field(:name, value: @cocktail.name) %>
-    <br>
+    <% if @cocktail.id != nil %>
+        <%= form_for([@cocktail,@recipe]) do |f| %>
+    
+            <%= f.label :name %>
+            <%= f.text_field(:name, value: @cocktail.name) %>
+            <br>
 
-    <%= f.label(:spirit_name, "Type or Choose a Spirit:") %>
-    <%= f.text_field(:spirit_name, list: "spirits_autocomplete", value: @cocktail.spirit.name) %>
-    <datalist id="spirits_autocomplete">
-        <% Spirit.all.each do |s| %>
-            <option value="<%= s.name %>">
+            <%= f.label(:spirit_name, "Type or Choose a Spirit:") %>
+            <%= f.text_field(:spirit_name, list: "spirits_autocomplete", value: @cocktail.spirit.name) %>
+            
+            <datalist id="spirits_autocomplete">
+                <% Spirit.all.each do |s| %>
+                    <option value="<%= s.name %>">
+                <% end %>
+            </datalist>
+            <br>
+
+            <%= f.label :ingredients %>
+            <%= f.text_area :ingredients %>
+            <br>
+        
+            <%= f.label :garnish %>
+            <%= f.text_field :garnish %>
+            <br>
+        
+            <%= f.label :notes %>
+            <%= f.text_area :notes %>
+            <br>
+            
+            <%= f.submit "Create Recipe" %>
         <% end %>
-    </datalist>
-    <br>
-
     <% else %>
+
+    <%= form_for(@recipe) do |f| %>
 
     <%= f.label(:name, "Type or Choose a Cocktail:") %>
     <%= f.text_field(:name, list: "names_autocomplete") %>
