@@ -15,6 +15,7 @@
   <% elsif flash[:success] %>
     <h4 style="color:green;"><%= flash[:success] %></h4>
   <% end %>
+  <%= content_tag :div, @error, style: "color:red;" %>
   
   <% if logged_in? %>
     <div class="nav">

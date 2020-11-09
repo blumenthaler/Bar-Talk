@@ -6,12 +6,9 @@ class RecipesController < ApplicationController
         binding.pry
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
             @recipes = @user.recipes
-        elsif params[:user_id] != nil && !User.find_by_id(params[:user_id])
-            @user = User.find_by(id: params[:user_id])
-            @recipes = Recipe.all
-            flash[:message] = "This user does not exist."
         else
-            redirect_to users_path
+            @error = "This user does not exist." if params[:user_id]
+            @recipes = Recipe.all
         end
     end
 
