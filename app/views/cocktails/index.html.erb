@@ -1,13 +1,11 @@
 <h1><i>All Cocktails</i></h1>
 <ol>
-
-    <% @spirits.each do |spirit| %>
-        <li><h4><i><%= spirit.name %> Cocktails</i></h4>
-        <ul>
-            <% spirit.cocktails.each do |c| %></li>
-                <li><%= link_to c.name, cocktail_path(c) %></li><br>
-            <% end %>
-        </ul>
+    <% @cocktails.each do |cocktail| %>
+        <% if cocktail.recipes.any? %>
+            <li><h4><i><%= cocktail.spirit.name %> Cocktails</i></h4>
+            <ul>
+                <li><%= link_to cocktail.name, cocktail_path(cocktail) %></li><br>
+            </ul>
+        <% end %>
     <% end %>
-   
 </ol>

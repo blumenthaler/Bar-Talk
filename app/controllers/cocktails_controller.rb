@@ -2,7 +2,7 @@ class CocktailsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def index
-        @spirits = Spirit.all
+        @cocktails = Cocktail.all
     end
 
     def others
