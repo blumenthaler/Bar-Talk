@@ -8,6 +8,7 @@
         <i>Notes:</i> <%= r.notes %></li><br>
     <% end %>
     </ol>
+    <%= link_to "Add a New Recipe", new_user_recipe_path(@user) %>
 <% elsif @user %>
     <h1><i><%= @user.username %>'s Recipes</i></h1>
     <ol>

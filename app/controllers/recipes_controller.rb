@@ -3,7 +3,6 @@ class RecipesController < ApplicationController
     before_action :current_recipe, only: [:upvote, :downvote, :update, :destroy]
 
     def index
-        binding.pry
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
             @recipes = @user.recipes
         else
@@ -13,9 +12,10 @@ class RecipesController < ApplicationController
     end
 
     def new
-        @recipe = Recipe.new(user_id: params[:user_id])
-        if params[:cocktail_id]
-            @cocktail = Cocktail.find_by_id(params[:cocktail_id])
+        if params[:cocktail_id] && @cocktail = Cocktail.find_by_id(params[:cocktail_id])
+            @recipe = @cocktail.recipes.build
+        else
+            @error = "This user does not exist." if params[:cocktail_id]
         end
     end
 
@@ -34,7 +34,7 @@ class RecipesController < ApplicationController
             errors = ["Recipe was not saved"]
             @recipe.errors.full_messages.each{ |msg| errors << msg }
             errors << "Please try again."
-            flash[:message] = errors.join(". ")
+            @error = errors.join(". ")
             redirect_to new_user_recipe_path(current_user)
         end
     end

@@ -2,7 +2,7 @@
 
 <h2><%= @cocktail.name if @cocktail %></h2>
 
-<%= form_for @recipe do |f| %>
+<%= form_for([@cocktail,@recipe]) do |f| %>
     <% if @cocktail %>
         <%= f.label :name %>
         <%= f.text_field(:name, value: @cocktail.name) %>

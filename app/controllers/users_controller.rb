@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+    #do I want to get rid of Users#index? seems redundant (recipes#others)
     def index
         @users = User.all
     end
