@@ -4,6 +4,7 @@ class Recipe < ApplicationRecord
   belongs_to :cocktail
   belongs_to :spirit
   accepts_nested_attributes_for :cocktail
+  validates :name, presence: true
   validates :ingredients, presence: true
   scope :all_except_user, ->(user) { where.not("user_id = ?", user.id) }
   scope :all_by_user, ->(user) { where("user_id = ?", user.id) }
