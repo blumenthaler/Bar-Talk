@@ -19,7 +19,6 @@ class UsersController < ApplicationController
     end
 
     def show
-        binding.pry
         redirect_if_not_logged_in
         if @user = User.find_by(id: params[:id])
             @recipes = @user.recipes
