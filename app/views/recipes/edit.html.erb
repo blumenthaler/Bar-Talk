@@ -1,17 +1,4 @@
-<% if @recipe.errors.any? %>
-  <div id="error_explanation" style="color:red;">
-    <h3>
-      <%= pluralize(@recipe.errors.count, "error") %>
-      prohibited this recipe from being saved:
-        <ul>
-            <% @recipe.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-        </ul>
-    </h3>
-  </div>
-<% end %>
-
+<%= render partial: "form" %>
 <h1>Edit Recipe</h1>
 
 <h2><i>The <%= @cocktail.name %> (<%= @cocktail.spirit.name %>)</i></h2>
