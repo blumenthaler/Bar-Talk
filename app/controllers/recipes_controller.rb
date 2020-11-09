@@ -58,13 +58,12 @@ class RecipesController < ApplicationController
     end
 
     def update
-        if recipe_params[:ingredients].empty?
-            flash[:message] = "Recipe was not updated. Ingredients cannot be empty. Please try again."
-            redirect_to edit_recipe_path(@recipe)
-        else
-            @recipe.update(recipe_params)
+        if @recipe.update(recipe_params)
             flash[:success] = "Recipe updated!"
             redirect_to cocktail_path(@recipe.cocktail)
+        else
+            @cocktail = @recipe.cocktail
+            render :edit
         end
     end
 
