@@ -1,10 +1,5 @@
 class UsersController < ApplicationController
 
-    #do I want to get rid of Users#index? seems redundant (recipes#others)
-    def index
-        @users = User.all
-    end
-
     def others
         @users = users_from_recipes(Recipe.all.all_except_user(current_user))
     end

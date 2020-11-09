@@ -6,7 +6,6 @@
         <h2><i>The <%= @cocktail.name if @cocktail.name != nil %> (<%= @cocktail.spirit.name if @cocktail.spirit != nil %>)</i></h2>
         
         <%= form_for([@cocktail,@recipe]) do |f| %>
-
             <%= f.hidden_field :name, value: @cocktail.name %>
             <%= f.hidden_field :spirit_name, value: @cocktail.spirit.name %>
 
