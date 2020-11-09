@@ -6,11 +6,9 @@ To Do:
 
 - add comments functionality (optional)
 - add a layout (kind of optional, not really)
-- Verify Recipes CRUD is working properly (mostly in controller, index, update)
 - Make sure nested routes are working (views are dynamic)
 - What is the difference between Others view and Users#recipes view?
     - implement this difference, because right now they are very similar
-
 
 - refactor from start to end point
     - The application is pretty DRY

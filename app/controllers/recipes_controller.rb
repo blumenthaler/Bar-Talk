@@ -61,7 +61,6 @@ class RecipesController < ApplicationController
     end
 
     def update
-        binding.pry
         if recipe_params[:ingredients].empty?
             flash[:message] = "Recipe was not updated. Ingredients cannot be empty. Please try again."
             redirect_to edit_recipe_path(@recipe)
@@ -70,7 +69,6 @@ class RecipesController < ApplicationController
             flash[:success] = "Recipe updated!"
             redirect_to cocktail_path(@recipe.cocktail)
         end
-
     end
 
     def destroy
@@ -95,10 +93,6 @@ class RecipesController < ApplicationController
 
     def recipe_params
         params.require(:recipe).permit(:name, :ingredients, :garnish, :notes, :user_id, :spirit_name)
-    end
-
-    def req_recipe_params
-        params.require(:recipe).permit(:name, :ingredients, :spirit_name)
     end
 
     def current_recipe
