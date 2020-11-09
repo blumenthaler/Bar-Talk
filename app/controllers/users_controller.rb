@@ -25,9 +25,12 @@ class UsersController < ApplicationController
 
     def show
         redirect_if_not_logged_in
-        @user = User.find_by(id: params[:id])
-        @recipes = @user.recipes
-        redirect_to user_recipes_path(@user)
+        if @user = User.find_by(id: params[:id])
+            @recipes = @user.recipes
+        else
+            flash[:message] = "This user does not exist."
+            redirect_to recipes_path
+        end
     end
 
     private

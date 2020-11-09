@@ -69,6 +69,7 @@ class RecipesController < ApplicationController
         else
             flash[:message] = "You are not authorized to delete this recipe."
             redirect_to cocktail_path(@recipe.cocktail)
+        end
     end
 
     def upvote
