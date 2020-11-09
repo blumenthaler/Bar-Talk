@@ -59,7 +59,6 @@ class RecipesController < ApplicationController
             flash[:success] = "Recipe updated!"
             redirect_to cocktail_path(@recipe.cocktail)
         else
-            @cocktail = @recipe.cocktail
             render :edit
         end
     end
