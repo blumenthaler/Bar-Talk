@@ -62,6 +62,37 @@
     float: left;
 }
 
+.vote {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    display:inline-block;
+    align-items: center;
+}
+
+.vote strong {
+    display:inline-block;
+    float: left;
+}
+
+.vote input {
+    display: inline-block;
+    float: right;
+    width: 50%;
+    text-align: center;
+}
+
+#vote-up {
+    /* margin-right:25px; */
+    display:inline-block;
+}
+
+#vote-down {
+    margin-left:100px;
+    margin-bottom: 10px;
+    display:inline-block;
+}
+
 #error_explanation {
     color: red;
     text-align: center;

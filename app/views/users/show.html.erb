@@ -18,8 +18,8 @@
         <% if r.user != current_user %>
             <div class="vote">
                 <strong>Vote: </strong>
-                <%= button_to '↑', like_recipe_path(r), method: :put %>
-                <%= button_to '↓', dislike_recipe_path(r), method: :put %>
+                <%= button_to '↑', like_recipe_path(r), method: :put, id: "vote-up" %>
+                <%= button_to '↓', dislike_recipe_path(r), method: :put, id: "vote-down" %>
             </div>
         <% end %><br><br>
     <% end %>
