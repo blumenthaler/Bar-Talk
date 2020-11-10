@@ -101,3 +101,19 @@ ol {
 li {
     color: #B9593C;
 }
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color:olivedrab;
+}
+
+a:visited {
+    color: #463F3A;
+}
+
+a:hover {
+    color:green;
+}
