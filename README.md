@@ -1,24 +1,29 @@
-# README
+# Bar Talk
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+Welcome to Bar Talk! This Rails webapp is a forum where you can log and organize your own cocktail recipes, as well as view and vote on other users' recipes.
 
-* Ruby version
 
-* System dependencies
+## Development
 
-* Configuration
+Try this app in your local environment, clone and run following command inside this project's directory
 
-* Database creation
+    $ bundle install
 
-* Database initialization
+Start up local server
 
-* How to run the test suite
+    $ rails s
 
-* Services (job queues, cache servers, search engines, etc.)
+For interactive console
 
-* Deployment instructions
+    $ rails c
 
-* ...
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/blumenthaler/Bar-Talk. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](https://contributor-covenant.org/) code of conduct.
+
+## License
+
+The project is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
