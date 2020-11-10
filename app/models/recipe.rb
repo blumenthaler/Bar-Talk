@@ -17,7 +17,6 @@ class Recipe < ApplicationRecord
     self.spirit ? self.spirit.name : nil
   end
 
-  # recipes model class method/scope
   def self.highest_rated_recipes
     recipes = self.all.sort_by{|r| r.get_likes.size}.reverse
     top_three = [recipes[0], recipes[1], recipes[2]]
