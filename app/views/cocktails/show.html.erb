@@ -27,8 +27,12 @@
             <% end %>
             <i>Ingredients:</i> <%= recipe.ingredients %><br>
             <i>Garnish:</i> <%= recipe.garnish %><br>
-            <i>Notes:</i> <%= recipe.notes %></li>
-            <strong>Vote: </strong><%= button_to '↑', like_recipe_path(recipe), method: :put %><%= button_to '↓', dislike_recipe_path(recipe), method: :put %>
+            <i>Notes:</i> <%= recipe.notes %></li><br>
+            <div class="vote">
+                <strong>Vote: </strong>
+                <%= button_to '↑', like_recipe_path(recipe), method: :put, id: "vote-up" %>
+                <%= button_to '↓', dislike_recipe_path(recipe), method: :put, id: "vote-down" %>
+            </div>
         <% end %>
     </ol>
 <% end %>

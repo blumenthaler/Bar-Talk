@@ -9,9 +9,12 @@
         <li><strong><%= link_to r.name, cocktail_path(r.cocktail) %></strong><br>
         <i>Ingredients:</i> <%= r.ingredients %><br>
         <i>Garnish:</i> <%= r.garnish %><br>
-        <i>Notes:</i> <%= r.notes %></li>
-        <strong>Vote: </strong><%= button_to '↑', like_recipe_path(r), method: :put %><%= button_to '↓', dislike_recipe_path(r), method: :put %></li>
-        <br>
-    <% end %>
+        <i>Notes:</i> <%= r.notes %></li><br>
+            <div class="vote">
+                <strong>Vote: </strong>
+                <%= button_to '↑', like_recipe_path(r), method: :put, id: "vote-up" %>
+                <%= button_to '↓', dislike_recipe_path(r), method: :put, id: "vote-down" %>
+            </div><br><br>
+    <% end %>    
     </ol>
 <% end %>

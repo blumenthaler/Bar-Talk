@@ -5,10 +5,13 @@
     <li><%= link_to "#{r.name} by #{r.user.username}", cocktail_path(r.cocktail) %><br>
     <i>Ingredients:</i> <%= r.ingredients %><br>
     <i>Garnish:</i> <%= r.garnish %><br>
-    <i>Notes:</i> <%= r.notes %></li>
+    <i>Notes:</i> <%= r.notes %></li><br>
     <% if r.user != current_user %>
-        <strong>Vote: </strong><%= button_to '↑', like_recipe_path(r), method: :put %><%= button_to '↓', dislike_recipe_path(r), method: :put %>
-    <% end %>
-    <br></li>
+        <div class="vote">
+            <strong>Vote: </strong>
+            <%= button_to '↑', like_recipe_path(r), method: :put, id: "vote-up" %>
+            <%= button_to '↓', dislike_recipe_path(r), method: :put, id: "vote-down" %>
+        </div>
+    <% end %><br><br></li>
 <% end %>
 </ol>
