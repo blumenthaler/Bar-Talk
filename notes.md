@@ -6,15 +6,8 @@ Bar Talk: A forum for bartenders to discuss cocktail recipes and their variation
 
 To Do:
 
-- highest_rated_recipes #=> application controller => recipes model class method/scope
-- users_from_recipes #=> move to users model
 - add a layout (kind of optional, not really)
 - add comments functionality (optional)
-
-//
-
-- Do I need to refactor my create/update actions in Recipes Controller? (I think so, it is messy) 
-    - create custom setters in cocktail/spirit models (when passing args from recipe_params into setters, find_or_create_by(arg), that way you can use Recipe.create(recipe_params))
 
 //
 
