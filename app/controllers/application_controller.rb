@@ -24,9 +24,4 @@ class ApplicationController < ActionController::Base
         top_three = [recipes[0], recipes[1], recipes[2]]
         top_three
     end
-
-    # users model
-    def users_from_recipes(recipes_array)
-        recipes_array.map{|recipe| recipe.user}.uniq
-    end
 end

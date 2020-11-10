@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     def others
-        @users = users_from_recipes(Recipe.all.all_except_user(current_user))
+        @users = User.other_users(current_user)
     end
 
     def new

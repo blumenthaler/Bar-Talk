@@ -3,6 +3,7 @@ class User < ApplicationRecord
     has_many :cocktails, through: :recipes
     validates :username, presence: true
     has_secure_password
+    scope :other_users, ->(user) { where.not("id = ?", user.id) }
     acts_as_voter
 
     def self.from_omniauth(auth)
@@ -10,5 +11,9 @@ class User < ApplicationRecord
           user.username = auth.info.name
           user.password = SecureRandom.hex
         end
+    end
+
+    def self.users_from_recipes(recipes_array)
+        recipes_array.map{|recipe| recipe.user}.uniq
     end
 end

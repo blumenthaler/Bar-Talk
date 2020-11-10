@@ -6,8 +6,6 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :cocktail
   validates :name, presence: true
   validates :ingredients, presence: true
-  scope :all_except_user, ->(user) { where.not("user_id = ?", user.id) }
-  scope :all_by_user, ->(user) { where("user_id = ?", user.id) }
 
   def spirit_name=(name)
     self.spirit = Spirit.find_or_create_by(name: name)
