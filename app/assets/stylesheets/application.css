@@ -103,6 +103,23 @@
     text-align: center;
 }
 
+.session {
+    text-decoration: none;
+    font-style: italic;
+}
+
+.session:link {
+    color:olivedrab;
+}
+
+.session:visited {
+    color: #463F3A;
+}
+
+.session:hover {
+    color:green;
+}
+
 #vote-up {
     /* margin-right:25px; */
     display:inline-block;
@@ -112,6 +129,23 @@
     margin-left:100px;
     margin-bottom: 10px;
     display:inline-block;
+}
+
+#google {
+    text-decoration: none;
+    font-style: italic;
+}
+
+#google:link {
+    color:olivedrab;
+}
+
+#google:visited {
+    color: #463F3A;
+}
+
+#google:hover {
+    color:green;
 }
 
 #error_explanation {

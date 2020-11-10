@@ -1,18 +1,18 @@
-<h1>Login Here</h1>
-
-<%= form_tag('/login') do %>
-    <%= label_tag "Username" %>
-    <%= text_field_tag :username %>
+<h1>Login to Bar Talk</h1>
+<div class="container">
+    <%= form_tag('/login') do %>
+        <%= label_tag "Username" %>
+        <%= text_field_tag :username %>
+        <br><br>
+        <%= label_tag "Password" %>
+        <%= password_field_tag :password %>
+        <br><br>
+        <%= submit_tag "Log In", class: "crud_button" %>
+    <% end %>
     <br>
-    <%= label_tag "Password" %>
-    <%= password_field_tag :password %>
+    <%= link_to "Log In with Google", '/auth/google_oauth2', id: "google" %>
+    <br><br>
+    <%= link_to "Home", root_path, class: "session" %>
     <br>
-    <%= submit_tag "Log In" %>
-<% end %>
-<br>
-<%= link_to "Log In with Google", '/auth/google_oauth2' %>
-<br>
-<br>
-<%= link_to "Home", root_path %>
-<br>
-<%= link_to "Signup", signup_path %>
+    <%= link_to "Signup", signup_path, class: "session" %>
+</div>

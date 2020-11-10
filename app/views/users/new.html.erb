@@ -1,18 +1,18 @@
 <h1>Sign Up</h1>
-
+<div class="container">
 <%= form_for @user do |f| %>
     <%= f.label :username %>
     <%= f.text_field :username %>
-    <br>
+    <br><br>
     <%= f.label :password %>
     <%= f.password_field :password %>
-    <br>
-    <%= f.submit "Sign Up" %>
+    <br><br>
+    <%= f.submit "Sign Up", class:"crud_button" %>
 <% end %>
 <br>
-<%= link_to "Log In with Google", '/auth/google_oauth2' %>
+<%= link_to "Log In with Google", '/auth/google_oauth2', id: "google" %>
+<br><br>
+<%= link_to "Home", root_path, class: "session" %>
 <br>
-<br>
-<%= link_to "Home", root_path %>
-<br>
-<%= link_to "Login", login_path %>
+<%= link_to "Login", login_path, class: "session" %>
+</div>
