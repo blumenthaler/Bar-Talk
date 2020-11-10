@@ -18,15 +18,15 @@
   <%= content_tag :div, @error, style: "color:red;" %>
   
   <% if logged_in? %>
-    <div class="nav">
-      <%= link_to "Profile", user_path(current_user) %>
-      <%= link_to "New Recipe", new_user_recipe_path(current_user) %>
-      <%= link_to "All Cocktails", cocktails_path %>
-      <%= link_to "All Recipes", recipes_path %>
-      <%= link_to "Highest Rated", popular_path %>
-      <%= link_to "Other Users' Recipes", others_path %>
-      <%= link_to "Logout", logout_path, method:"delete" %>
-    </div>
+    <ul class="nav">
+        <li><%= link_to "Profile", user_path(current_user) %></li>
+        <li><%= link_to "New Recipe", new_user_recipe_path(current_user) %></li>
+        <li><%= link_to "All Cocktails", cocktails_path %></li>
+        <li><%= link_to "All Recipes", recipes_path %></li>
+        <li><%= link_to "Highest Rated", popular_path %></li>
+        <li><%= link_to "Other Users' Recipes", others_path %></li>
+        <li><%= link_to "Logout", logout_path, method:"delete" %></li>
+    </ul>
   <% end %>
     <%= yield %>
   </body>
