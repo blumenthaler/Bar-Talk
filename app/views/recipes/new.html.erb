@@ -3,62 +3,65 @@
 <h1>New Recipe</h1>
 
     <% if @cocktail.id != nil %>
-        <h2><i>The <%= @cocktail.name if @cocktail.name != nil %> (<%= @cocktail.spirit.name if @cocktail.spirit != nil %>)</i></h2>
+        <h2><i>The <%= @cocktail.name if @cocktail.name != nil %> (<%= @cocktail.spirit.name if @cocktail.spirit != nil %>)</i></h2><br>
         
-        <%= form_for([@cocktail,@recipe]) do |f| %>
+        <%= form_for([@cocktail,@recipe], html: {class: 'form'}) do |f| %>
             <%= f.hidden_field :name, value: @cocktail.name %>
             <%= f.hidden_field :spirit_name, value: @cocktail.spirit.name %>
 
-            <%= f.label :ingredients %>
-            <%= f.text_area :ingredients %>
+            <%= f.label(:ingredients, class: "label") %>
+            <%= f.text_area(:ingredients, class: "field") %>
             <br>
+            <br>
+            <br>
+    
+            <%= f.label(:garnish, class: "label") %>
+            <%= f.text_field(:garnish, class: "field") %>
+            <br><br>
+    
+            <%= f.label(:notes, class: "label") %>
+            <%= f.text_area(:notes, class: "field") %>
+            <br><br><br><br>
         
-            <%= f.label :garnish %>
-            <%= f.text_field :garnish %>
-            <br>
-        
-            <%= f.label :notes %>
-            <%= f.text_area :notes %>
-            <br>
-            
-            <%= f.submit "Create Recipe" %>
+            <%= f.submit("Create Recipe", class: "submit") %>
         <% end %>
 
     <% else %>
 
-    <%= form_for(@recipe) do |f| %>
+    <%= form_for(@recipe, html: {class: 'form'}) do |f| %>
 
-        <%= f.label(:name, "Type or Choose a Cocktail:") %>
-        <%= f.text_field(:name, list: "names_autocomplete") %>
-        <%#= f.collection_select :id, :name, Cocktail.all, :id, :name %>
+        <%= f.label(:name, "Type or Choose a Cocktail", class: "label") %>
+        <%= f.text_field(:name, list: "names_autocomplete", class: "field") %>
         <datalist id="names_autocomplete">
             <% Cocktail.all.each do |c| %>
                 <option value="<%= c.name %>">
             <% end %>
         </datalist>
-        <br>
+        <br><br>
 
-        <%= f.label(:spirit_name, "Type or Choose a Spirit:") %>
-        <%= f.text_field(:spirit_name, list: "spirits_autocomplete") %>
-        <datalist id="spirits_autocomplete">
+        <%= f.label(:spirit_name, "Type or Choose a Spirit", class: "label") %>
+        <%= f.text_field(:spirit_name, list: "spirits_autocomplete", class: "field") %>
+        <datalist id="spirits_autocomplete" class="field">
             <% Spirit.all.each do |s| %>
                 <option value="<%= s.name %>">
             <% end %>
         </datalist>
+        <br><br>
+
+        <%= f.label(:ingredients, class: "label") %>
+        <%= f.text_area(:ingredients, class: "field") %>
+        <br>
+        <br>
         <br>
 
-        <%= f.label :ingredients %>
-        <%= f.text_area :ingredients %>
-        <br>
+        <%= f.label(:garnish, class: "label") %>
+        <%= f.text_field(:garnish, class: "field") %>
+        <br><br>
 
-        <%= f.label :garnish %>
-        <%= f.text_field :garnish %>
-        <br>
-
-        <%= f.label :notes %>
-        <%= f.text_area :notes %>
-        <br>
+        <%= f.label(:notes, class: "label") %>
+        <%= f.text_area(:notes, class: "field") %>
+        <br><br><br><br>
     
-        <%= f.submit "Create Recipe" %>
+        <%= f.submit("Create Recipe", class: "submit") %>
     <% end %>
 <% end %>
