@@ -14,9 +14,13 @@
         <li><i><%= link_to r.name, cocktail_path(r.cocktail) %></i><br><br>
         <i>Ingredients:</i> <%= r.ingredients %><br>
         <i>Garnish:</i> <%= r.garnish %><br>
-        <i>Notes:</i> <%= r.notes %></li>
+        <i>Notes:</i> <%= r.notes %></li><br>
         <% if r.user != current_user %>
-            <strong>Vote: </strong><%= button_to '↑', like_recipe_path(r), method: :put %><%= button_to '↓', dislike_recipe_path(r), method: :put %>
-        <% end %><br>
+            <div class="vote">
+                <strong>Vote: </strong>
+                <%= button_to '↑', like_recipe_path(r), method: :put %>
+                <%= button_to '↓', dislike_recipe_path(r), method: :put %>
+            </div>
+        <% end %><br><br>
     <% end %>
 </ol>

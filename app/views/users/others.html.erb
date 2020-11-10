@@ -1,6 +1,6 @@
 <h1>Other Users' Recipes</h1>
 <% @users.each do |u| %>
-    <h4><%= link_to u.username, user_recipes_path(u) %>'s Recipes</h4>
+    <h4><%= link_to u.username, user_path(u) %>'s Recipes</h4>
     <ol>
     <% u.recipes.each do |r| %>
         <% if Recipe.highest_rated_recipes.include?(r) %>
