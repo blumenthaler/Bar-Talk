@@ -68,8 +68,15 @@
     width: 75px;
 }
 
-.new-link {
+#new-link {
     text-align: center;
+}
+
+#new-link-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 50px;
 }
 
 .container{

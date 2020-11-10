@@ -38,7 +38,7 @@
         <% end %>
     </ol>
 <% end %>
-<br>
-<div class="container">
-    <%= link_to "Add a Recipe to this Cocktail", new_cocktail_recipe_path(@cocktail), class: "new-link" %>
+<div id="new-link-container">
+    <h4><i><%= link_to "Add a Recipe to this Cocktail", new_cocktail_recipe_path(@cocktail), id: "new-link" %></i></h4>
+    <br><br><br><br>
 </div>
