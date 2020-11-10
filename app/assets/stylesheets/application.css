@@ -62,8 +62,23 @@
     float: left;
 }
 
+.crud_button {
+    background-color: brown;
+    color: whitesmoke;
+    width: 75px;
+}
+
+.new-link {
+    text-align: center;
+}
+
+.container{
+    width: 100%;
+    text-align: center;
+}
+
 .vote {
-    width: 100px;
+    width: 75px;
     margin-left: auto;
     margin-right: auto;
     display:inline-block;
@@ -78,10 +93,14 @@
 .vote input {
     display: inline-block;
     float: right;
-    width: 50%;
+    width: 35%;
     text-align: center;
     background-color: brown;
     color: whitesmoke;
+}
+
+.user_recipe {
+    text-align: center;
 }
 
 #vote-up {
@@ -108,6 +127,13 @@
     list-style: none;
 }
 
+#error_explanation ul li {
+    color: red;
+    text-align: center;
+    font-style: italic;
+    list-style: none;
+}
+
 body {
     background-color: #f4f3ee;
     color: #B9593C;
@@ -121,6 +147,16 @@ h1 {
 
 h2 {
     color: #B9593C;
+    text-align: center;
+    font-style: italic;
+}
+
+h3 {
+    text-align: center;
+    font-style: italic;
+}
+
+h4 {
     text-align: center;
     font-style: italic;
 }

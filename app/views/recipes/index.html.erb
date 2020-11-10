@@ -18,6 +18,9 @@
                 <%= button_to '↑', like_recipe_path(r), method: :put, id: "vote-up" %>
                 <%= button_to '↓', dislike_recipe_path(r), method: :put, id: "vote-down" %>
             </div>
+        <% else %>
+            <%= button_to 'Edit', edit_recipe_path(r), method: 'get', class: "crud_button" %>
+            <%= button_to 'Delete', recipe_path(r), method: 'delete', data: { confirm: 'Are you sure?' }, class: "crud_button" %>
         <% end %><br><br>
     <% end %>
     </ol>

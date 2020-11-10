@@ -1,24 +1,26 @@
 <h1><i>The <%= @cocktail.name %> (<%= @cocktail.spirit.name %>)</i></h1>
 
 <% if @user_recipes.exists? %>
-    <h4><i>Your <%= pluralize_without_count(@user_recipes.size, "Recipe") %>:</i></h4>
+    <h3><i>Your <%= pluralize_without_count(@user_recipes.size, "Recipe") %>:</i></h3>
     <% @user_recipes.each_with_index do |r, i| %>
+        <div class="user_recipe">
         <strong><i>Variation #<%= i + 1 %>:</i></strong><br>
         <% if Recipe.highest_rated_recipes.include?(r) %>
             <strong>* Popular Recipe *</strong><br>
         <% end %>
         <i>Ingredients:</i> <%= r.ingredients %><br>
         <i>Garnish:</i> <%= r.garnish %><br>
-        <i>Notes:</i> <%= r.notes %></li><br>
+        <i>Notes:</i> <%= r.notes %></li><br><br>
         
-        <%= button_to 'Edit', edit_recipe_path(r), method: 'get'%>
-        <%= button_to 'Delete', recipe_path(r), method: 'delete', data: { confirm: 'Are you sure?' } %>            
+        <%= button_to 'Edit', edit_recipe_path(r), method: 'get', class: "crud_button" %>
+        <%= button_to 'Delete', recipe_path(r), method: 'delete', data: { confirm: 'Are you sure?' }, class: "crud_button" %>
+        </div>            
         <br><br>
     <% end %>
 <% end %>
 
 <% if @other_recipes.exists? %>
-    <h4>Other Users' Recipes: </h4>
+    <h3>Other Users' Recipes: </h3>
     <ol>
         <% @other_recipes.each do |recipe| %>
             <li><%= link_to recipe.user.username, user_path(recipe.user) %>'s Recipe:<br><br>
@@ -37,4 +39,6 @@
     </ol>
 <% end %>
 <br>
-<%= link_to "Add a Recipe to this Cocktail", new_cocktail_recipe_path(@cocktail) %>
+<div class="container">
+    <%= link_to "Add a Recipe to this Cocktail", new_cocktail_recipe_path(@cocktail), class: "new-link" %>
+</div>

@@ -2,7 +2,7 @@
 
 <ol>
 <% @recipes.each do |r| %>
-    <li><%= link_to "#{r.name} by #{r.user.username}", cocktail_path(r.cocktail) %><br>
+    <li><%= link_to r.name, cocktail_path(r.cocktail)%> by <%= link_to r.user.username, user_path(r.user) %><br>
     <i>Ingredients:</i> <%= r.ingredients %><br>
     <i>Garnish:</i> <%= r.garnish %><br>
     <i>Notes:</i> <%= r.notes %></li><br>
@@ -12,6 +12,9 @@
             <%= button_to '↑', like_recipe_path(r), method: :put, id: "vote-up" %>
             <%= button_to '↓', dislike_recipe_path(r), method: :put, id: "vote-down" %>
         </div>
+    <% else %>
+        <%= button_to 'Edit', edit_recipe_path(r), method: 'get', class: "crud_button" %>
+        <%= button_to 'Delete', recipe_path(r), method: 'delete', data: { confirm: 'Are you sure?' }, class: "crud_button" %>
     <% end %><br><br></li>
 <% end %>
 </ol>
