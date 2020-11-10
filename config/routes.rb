@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   # cocktails/2/recipes/new #=> Add a recipe to THIS Cocktail (new)
     # (then redirect to cocktail_path(cocktail))
   resources :cocktails do
-    resources :recipes, only: [:new, :create]
+    resources :recipes, only: [:new, :create, :index]
   end
 
   # resources :recipes

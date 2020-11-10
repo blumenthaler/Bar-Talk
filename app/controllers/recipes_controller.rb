@@ -3,7 +3,9 @@ class RecipesController < ApplicationController
     before_action :current_recipe, only: [:upvote, :downvote, :edit, :update, :destroy]
 
     def index
-        if params[:spirit_id] && @spirit = Spirit.find_by_id(params[:spirit_id])
+        if params[:cocktail_id]
+            redirect_to cocktail_path(params[:cocktail_id])
+        elsif params[:spirit_id] && @spirit = Spirit.find_by_id(params[:spirit_id])
             @recipes = @spirit.recipes
         else
             @error = "This spirit does not exist." if params[:spirit_id]
