@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
     before_action :redirect_if_not_logged_in
-    before_action :current_recipe, only: [:upvote, :downvote, :edit, :update, :destroy]
+    before_action :current_recipe, only: [:show, :upvote, :downvote, :edit, :update, :destroy]
 
     def index
         if params[:cocktail_id]
@@ -11,6 +11,10 @@ class RecipesController < ApplicationController
             @error = "This spirit does not exist." if params[:spirit_id]
             @recipes = Recipe.all 
         end
+    end
+
+    def show
+        redirect_to cocktail_path(@recipe.cocktail)
     end
 
     def new
