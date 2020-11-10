@@ -1,7 +1,7 @@
 <h1>Most Popular Recipes</h1>
 
 <ol>
-<% highest_rated_recipes.each do |r| %>
+<% @recipes.each do |r| %>
     <li><%= link_to "#{r.name} by #{r.user.username}", cocktail_path(r.cocktail) %><br>
     <i>Ingredients:</i> <%= r.ingredients %><br>
     <i>Garnish:</i> <%= r.garnish %><br>

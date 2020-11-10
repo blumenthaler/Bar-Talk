@@ -4,7 +4,7 @@
     <h4><i>Your <%= pluralize_without_count(@user_recipes.size, "Recipe") %>:</i></h4>
     <% @user_recipes.each_with_index do |r, i| %>
         <strong><i>Variation #<%= i + 1 %>:</i></strong><br>
-        <% if highest_rated_recipes.include?(r) %>
+        <% if Recipe.highest_rated_recipes.include?(r) %>
             <strong>* Popular Recipe *</strong><br>
         <% end %>
         <i>Ingredients:</i> <%= r.ingredients %><br>
@@ -22,7 +22,7 @@
     <ol>
         <% @other_recipes.each do |recipe| %>
             <li><%= link_to recipe.user.username, user_recipes_path(recipe.user) %>'s Recipe:<br><br>
-            <% if highest_rated_recipes.include?(recipe) %>
+            <% if Recipe.highest_rated_recipes.include?(recipe) %>
                 <strong>* Popular Recipe *</strong><br>
             <% end %>
             <i>Ingredients:</i> <%= recipe.ingredients %><br>

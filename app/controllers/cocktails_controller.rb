@@ -17,6 +17,6 @@ class CocktailsController < ApplicationController
     end
 
     def popular 
-        @recipes = highest_rated_recipes
+        @recipes = Recipe.highest_rated_recipes
     end
 end

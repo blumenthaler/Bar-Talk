@@ -17,11 +17,4 @@ class ApplicationController < ActionController::Base
     def authorized_to_edit_or_delete?(recipe)
         recipe.user == current_user
     end
-
-    # recipes model class method/scope
-    def highest_rated_recipes
-        recipes = Recipe.all.each.sort_by{|r| r.get_likes.size}.reverse
-        top_three = [recipes[0], recipes[1], recipes[2]]
-        top_three
-    end
 end

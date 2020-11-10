@@ -5,7 +5,7 @@
 <% end %>
     <ol>
     <% @recipes.each do |r| %>
-        <% if highest_rated_recipes.include?(r) %>
+        <% if Recipe.highest_rated_recipes.include?(r) %>
                 <strong>* Popular Recipe *</strong><br>
         <% end %>
         <li><i><%= link_to r.name, cocktail_path(r.cocktail) %> by: <%= link_to r.user.username, user_path(r.user) %></i><br><br>

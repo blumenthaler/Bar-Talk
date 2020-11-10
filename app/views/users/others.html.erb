@@ -3,7 +3,7 @@
     <h4><%= link_to u.username, user_recipes_path(u) %>'s Recipes</h4>
     <ol>
     <% u.recipes.each do |r| %>
-        <% if highest_rated_recipes.include?(r) %>
+        <% if Recipe.highest_rated_recipes.include?(r) %>
             <strong>* Popular Recipe *</strong><br>
         <% end %>
         <li><strong><%= link_to r.name, cocktail_path(r.cocktail) %></strong><br>
