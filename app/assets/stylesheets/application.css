@@ -80,6 +80,8 @@
     float: right;
     width: 50%;
     text-align: center;
+    background-color: brown;
+    color: whitesmoke;
 }
 
 #vote-up {
