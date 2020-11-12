@@ -9,6 +9,8 @@ To Do:
 - add a layout (kind of optional, not really)
 - add comments functionality (optional)
 
+- add ingredients model
+
 //
 
 

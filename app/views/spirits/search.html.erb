@@ -1,0 +1,7 @@
+<h1>Search Results</h1>
+
+<% if @spirit != nil %>
+    <%= link_to @spirit.name, spirit_recipes_path(@spirit) %>
+<% else %>
+    <h4>There are no matching spirits. Please try again.</h4>
+<% end %>

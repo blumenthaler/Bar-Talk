@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/popular', to: "cocktails#popular"
   get '/others', to: "users#others"
 
+  post '/spirits/search', to: "spirits#search", as: "search"
+
   resources :users do
     resources :recipes, only: [:new, :create]
   end

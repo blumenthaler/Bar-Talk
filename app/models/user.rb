@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_many :recipes
     has_many :cocktails, through: :recipes
-    validates :username, presence: true
+    validates :username, presence: true, uniqueness: true
     has_secure_password
     scope :other_users, ->(user) { where.not("id = ?", user.id) }
     acts_as_voter
